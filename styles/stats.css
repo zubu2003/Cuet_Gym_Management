@@ -1,0 +1,260 @@
+/* Stats Page Custom Styles */
+.stats-header {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    border: none;
+}
+
+.stats-header h3 {
+    margin: 0 0 0.2rem 0;
+    font-size: 1.4rem;
+    color: white;
+}
+
+.stats-header p {
+    margin: 0;
+    color: #cbd5e1;
+    font-size: 0.85rem;
+}
+
+.stats-icon {
+    font-size: 2.5rem;
+    color: white;
+}
+
+/* Period Selection */
+.stats-period {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.stats-period label {
+    font-weight: 600;
+    color: #1e3c72;
+    font-size: 0.9rem;
+}
+
+.period-btns {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.period-btn {
+    background: #f0f4f8;
+    color: #1e3c72;
+    border: 1px solid #cbd5e1;
+    border-radius: 25px;
+    padding: 0.5rem 1.2rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.period-btn.active {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    border-color: transparent;
+}
+
+.period-btn:hover:not(.active) {
+    background: #e2e8f0;
+}
+
+/* Stats Summary */
+.stats-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.2rem;
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+.summary-item {
+    background: white;
+    border-radius: 16px;
+    padding: 1.2rem;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e9ecef;
+    transition: 0.2s;
+}
+
+.summary-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.summary-item .material-icons {
+    font-size: 2rem;
+    color: #1e3c72;
+    margin-bottom: 0.5rem;
+}
+
+.summary-number {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #1e3c72;
+}
+
+.summary-label {
+    font-size: 0.75rem;
+    color: #6c757d;
+    margin-top: 0.3rem;
+}
+
+/* Equipment Usage */
+.stats-equipment h4 {
+    margin: 0 0 0.3rem 0;
+    color: #1e3c72;
+    font-size: 1rem;
+}
+
+.stats-equipment p {
+    margin: 0 0 1rem 0;
+    color: #6c757d;
+    font-size: 0.8rem;
+}
+
+.equipment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.equipment-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 0.8rem 1.2rem;
+    transition: 0.2s;
+}
+
+.equipment-item:hover {
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.equipment-info {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.equipment-info .material-icons {
+    color: #1e3c72;
+    font-size: 1.3rem;
+}
+
+.equipment-info span:last-child {
+    font-weight: 500;
+    color: #1a2a3a;
+}
+
+.equipment-count {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    border-radius: 20px;
+    padding: 0.3rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* Weekly Chart */
+.stats-chart h4 {
+    margin: 0 0 1.2rem 0;
+    color: #1e3c72;
+    font-size: 1rem;
+}
+
+.chart-bars {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.chart-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1;
+    min-width: 40px;
+}
+
+.bar-label {
+    font-size: 0.7rem;
+    color: #6c757d;
+    font-weight: 600;
+}
+
+.bar-container {
+    width: 100%;
+    height: 120px;
+    background: #e2e8f0;
+    border-radius: 8px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+}
+
+.bar-fill {
+    width: 100%;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    border-radius: 8px 8px 0 0;
+    transition: height 0.3s;
+}
+
+.bar-value {
+    font-size: 0.7rem;
+    color: #1e3c72;
+    font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .stats-summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .chart-bars {
+        gap: 0.4rem;
+    }
+    
+    .bar-container {
+        height: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-summary {
+        grid-template-columns: 1fr;
+    }
+    
+    .stats-period {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .period-btns {
+        width: 100%;
+    }
+    
+    .period-btn {
+        flex: 1;
+        text-align: center;
+    }
+}

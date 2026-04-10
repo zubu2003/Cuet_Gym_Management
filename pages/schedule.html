@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule | CUET Gym Assistant</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles/dashboard.css">
+    <link rel="stylesheet" href="../styles/schedule.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <!-- Top Navbar -->
+    <header class="dashboard-navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <button class="hamburger" id="sidebar-toggle">
+                    <span class="material-icons">menu</span>
+                </button>
+                <div class="logo">
+                    <a href="index.html" class="logo-link">
+                        <span class="logo-icon">💪</span>
+                        <span class="logo-text">CUET GYM ASSISTANT</span>
+                    </a>
+                </div>
+            </div>
+            <div class="nav-right">
+                <a href="index.html" class="nav-link">
+                    <span class="material-icons">home</span>
+                    <span>Home</span>
+                </a>
+                <a href="schedule.html" class="nav-link">
+                    <span class="material-icons">schedule</span>
+                    <span>Schedule</span>
+                </a>
+                <button class="nav-icon-btn">
+                    <span class="material-icons">notifications</span>
+                </button>
+                <button class="nav-icon-btn">
+                    <span class="material-icons">account_circle</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Dashboard Menu</h3>
+                <ul class="sidebar-menu">
+                    <li>
+                        <a href="dashboard.html">
+                            <span class="material-icons">dashboard</span>
+                            <span>Overview</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="stats.html">
+                            <span class="material-icons">bar_chart</span>
+                            <span>Stats</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tutorial.html">
+                            <span class="material-icons">ondemand_video</span>
+                            <span>Tutorials</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="schedule.html">
+                            <span class="material-icons">event</span>
+                            <span>Schedule</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="qr.html">
+                            <span class="material-icons">qr_code_scanner</span>
+                            <span>QR Scanner</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="workout.html">
+                            <span class="material-icons">fitness_center</span>
+                            <span>Workout Tracker</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html">
+                            <span class="material-icons">settings</span>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="gym-status">
+                <h4>Gym Status</h4>
+                <div class="gym-status-box">
+                    <div class="gym-status-main">
+                        <span class="gym-status-count">21 / 40</span>
+                    </div>
+                    <div class="gym-status-label">Currently Inside</div>
+                    <div class="gym-status-state status-ok">✅ Not Crowded</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Schedule Header Card -->
+            <section class="card schedule-header">
+                <span class="material-icons schedule-icon">event_note</span>
+                <div>
+                    <h3>Gym Schedule</h3>
+                    <p>Check gym timings for different categories</p>
+                </div>
+            </section>
+
+            <!-- Selection Cards -->
+            <section class="card schedule-select">
+                <div class="select-row">
+                    <div class="select-label">
+                        <span class="material-icons">people</span>
+                        <label>Select Category</label>
+                    </div>
+                    <div class="select-btns">
+                        <button class="select-btn active" data-category="Students">
+                            <span class="material-icons">school</span> Students
+                        </button>
+                        <button class="select-btn" data-category="Teachers">
+                            <span class="material-icons">person</span> Teachers
+                        </button>
+                    </div>
+                </div>
+                <div class="select-row">
+                    <div class="select-label">
+                        <span class="material-icons">wc</span>
+                        <label>Select Gender</label>
+                    </div>
+                    <div class="select-btns">
+                        <button class="select-btn active" data-gender="Boys">
+                            <span class="material-icons">male</span> Boys
+                        </button>
+                        <button class="select-btn" data-gender="Girls">
+                            <span class="material-icons">female</span> Girls
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Schedule Info Card -->
+            <section class="card schedule-info" id="scheduleInfo">
+                <span class="material-icons">info</span>
+                <span id="scheduleTitle">Students (Boys) Schedule</span>
+            </section>
+
+            <!-- Weekly Schedule Card -->
+            <section class="card schedule-week">
+                <h4>
+                    <span class="material-icons">calendar_today</span>
+                    Weekly Schedule
+                </h4>
+                <div id="schedule-content">
+                    <!-- Schedule content will be populated by JS -->
+                </div>
+            </section>
+
+            <!-- Notes Card -->
+            <section class="card schedule-notes">
+                <h4>
+                    <span class="material-icons">sticky_note_2</span>
+                    Important Notes
+                </h4>
+                <ul>
+                    <li>✅ Valid ID card required for entry</li>
+                    <li>⏰ Maximum 1 hour per session</li>
+                    <li>👕 Proper gym attire is mandatory</li>
+                    <li>🚫 No food or drinks inside the gym area</li>
+                    <li>📱 Keep phones on silent mode</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <script src="../scripts/schedule.js"></script>
+</body>
+</html>

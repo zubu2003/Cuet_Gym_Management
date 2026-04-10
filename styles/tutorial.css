@@ -1,0 +1,206 @@
+/* Tutorial Page Custom Styles */
+
+/* Tutorial Header */
+.tutorial-header {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    border: none;
+}
+
+.tutorial-header h3 {
+    margin: 0 0 0.2rem 0;
+    font-size: 1.4rem;
+    color: white;
+}
+
+.tutorial-header p {
+    margin: 0;
+    color: #cbd5e1;
+    font-size: 0.85rem;
+}
+
+.tutorial-icon {
+    font-size: 2.5rem;
+    color: white;
+}
+
+/* Search Box */
+.tutorial-search {
+    background: white;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 50px;
+    padding: 0.5rem 1rem;
+    transition: 0.2s;
+}
+
+.search-box:focus-within {
+    border-color: #1e3c72;
+    box-shadow: 0 0 0 3px rgba(30, 60, 114, 0.1);
+}
+
+.search-box .material-icons {
+    color: #94a3b8;
+    font-size: 1.2rem;
+}
+
+.search-box input {
+    flex: 1;
+    border: none;
+    background: none;
+    outline: none;
+    font-size: 0.9rem;
+    font-family: inherit;
+}
+
+.search-box input::placeholder {
+    color: #94a3b8;
+}
+
+/* Categories */
+.tutorial-categories {
+    background: white;
+}
+
+.category-btns {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.category-btn {
+    background: #f8fafc;
+    color: #1e3c72;
+    border: 1px solid #e2e8f0;
+    border-radius: 25px;
+    padding: 0.5rem 1.2rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.category-btn.active {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    border-color: transparent;
+}
+
+.category-btn:hover:not(.active) {
+    background: #e2e8f0;
+}
+
+/* Equipment Select Section */
+.tutorial-select h4 {
+    margin: 0 0 1.2rem 0;
+    color: #1e3c72;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.equipment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.2rem;
+}
+
+.equipment-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.equipment-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    background: white;
+}
+
+.equipment-card .material-icons {
+    font-size: 2.5rem;
+    color: #1e3c72;
+    margin-bottom: 0.8rem;
+}
+
+.equipment-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1a2a3a;
+    margin-bottom: 0.3rem;
+}
+
+.equipment-desc {
+    font-size: 0.7rem;
+    color: #6c757d;
+    margin-bottom: 0.8rem;
+}
+
+.watch-btn {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-top: 0.5rem;
+}
+
+.watch-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(30, 60, 114, 0.3);
+}
+
+/* No Results Message */
+.no-results {
+    text-align: center;
+    padding: 2rem;
+    color: #6c757d;
+    grid-column: 1 / -1;
+}
+
+.no-results .material-icons {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    color: #94a3b8;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .equipment-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .category-btns {
+        gap: 0.5rem;
+    }
+    
+    .category-btn {
+        padding: 0.4rem 1rem;
+        font-size: 0.75rem;
+    }
+    
+    .tutorial-header {
+        flex-direction: column;
+        text-align: center;
+    }
+}

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings | CUET Gym Assistant</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles/dashboard.css">
+    <link rel="stylesheet" href="../styles/settings.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <!-- Top Navbar -->
+    <header class="dashboard-navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <button class="hamburger" id="sidebar-toggle">
+                    <span class="material-icons">menu</span>
+                </button>
+                <div class="logo">
+                    <a href="index.html" class="logo-link">
+                        <span class="logo-icon">💪</span>
+                        <span class="logo-text">CUET GYM ASSISTANT</span>
+                    </a>
+                </div>
+            </div>
+            <div class="nav-right">
+                <a href="index.html" class="nav-link">
+                    <span class="material-icons">home</span>
+                    <span>Home</span>
+                </a>
+                <a href="schedule.html" class="nav-link">
+                    <span class="material-icons">schedule</span>
+                    <span>Schedule</span>
+                </a>
+                <button class="nav-icon-btn">
+                    <span class="material-icons">notifications</span>
+                </button>
+                <button class="nav-icon-btn">
+                    <span class="material-icons">account_circle</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Dashboard Menu</h3>
+                <ul class="sidebar-menu">
+                    <li><a href="dashboard.html"><span class="material-icons">dashboard</span> Overview</a></li>
+                    <li><a href="stats.html"><span class="material-icons">bar_chart</span> Stats</a></li>
+                    <li><a href="tutorial.html"><span class="material-icons">ondemand_video</span> Tutorials</a></li>
+                    <li><a href="schedule.html"><span class="material-icons">event</span> Schedule</a></li>
+                    <li><a href="qr.html"><span class="material-icons">qr_code_scanner</span> QR Scanner</a></li>
+                    <li><a href="workout.html"><span class="material-icons">fitness_center</span> Workout Tracker</a></li>
+                    <li class="active"><a href="settings.html"><span class="material-icons">settings</span> Settings</a></li>
+                </ul>
+            </div>
+            <div class="gym-status">
+                <h4>Gym Status</h4>
+                <div class="gym-status-box">
+                    <div class="gym-status-main">
+                        <span class="gym-status-count">21 / 40</span>
+                    </div>
+                    <div class="gym-status-label">Currently Inside</div>
+                    <div class="gym-status-state status-ok">✅ Not Crowded</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Profile Section -->
+            <section class="card settings-profile">
+                <div class="profile-avatar"><span class="material-icons">account_circle</span></div>
+                <div class="profile-info">
+                    <strong>Sazid Ahmed</strong><br>
+                    Student ID: 2021XXXX<br>
+                    Department: CSE<br>
+                    Email: sazid@cuet.ac.bd
+                </div>
+                <button class="profile-edit-btn" id="editProfileBtn">
+                    <span class="material-icons">edit</span>
+                </button>
+            </section>
+
+            <!-- Account Settings -->
+            <section class="card settings-section">
+                <h4>Account Settings</h4>
+                <div class="settings-list">
+                    <div class="settings-item" data-action="change-password">
+                        <span class="settings-icon"><span class="material-icons">lock</span></span>
+                        <span>Change Password</span>
+                        <span class="settings-arrow"><span class="material-icons">chevron_right</span></span>
+                    </div>
+                    <div class="settings-item" data-action="edit-profile">
+                        <span class="settings-icon"><span class="material-icons">edit</span></span>
+                        <span>Edit Profile</span>
+                        <span class="settings-arrow"><span class="material-icons">chevron_right</span></span>
+                    </div>
+                    <div class="settings-item" data-action="notifications">
+                        <span class="settings-icon"><span class="material-icons">notifications</span></span>
+                        <span>Notification Preferences</span>
+                        <span class="settings-arrow"><span class="material-icons">chevron_right</span></span>
+                    </div>
+                    <div class="settings-item" data-action="privacy">
+                        <span class="settings-icon"><span class="material-icons">privacy_tip</span></span>
+                        <span>Privacy Settings</span>
+                        <span class="settings-arrow"><span class="material-icons">chevron_right</span></span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Support & About -->
+            <section class="card settings-section">
+                <h4>Support & Information</h4>
+                <div class="settings-list">
+                    <div class="settings-item" data-action="help">
+                        <span class="settings-icon"><span class="material-icons">help</span></span>
+                        <span>Help & Support</span>
+                        <span class="settings-arrow"><span class="material-icons">chevron_right</span></span>
+                    </div>
+                    <div class="settings-item" data-action="about">
+                        <span class="settings-icon"><span class="material-icons">info</span></span>
+                        <span>About App</span>
+                        <span class="settings-arrow"><span class="material-icons">chevron_right</span></span>
+                    </div>
+                    <div class="settings-item" data-action="terms">
+                        <span class="settings-icon"><span class="material-icons">description</span></span>
+                        <span>Terms & Conditions</span>
+                        <span class="settings-arrow"><span class="material-icons">chevron_right</span></span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Account Actions -->
+            <section class="card settings-section">
+                <h4>Account Actions</h4>
+                <div class="settings-list">
+                    <div class="settings-item logout-item" data-action="logout">
+                        <span class="settings-icon"><span class="material-icons">exit_to_app</span></span>
+                        <span>Logout</span>
+                        <span class="settings-arrow"><span class="material-icons">chevron_right</span></span>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div id="passwordModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Change Password</h3>
+                <span class="modal-close">&times;</span>
+            </div>
+            <form id="passwordForm">
+                <div class="form-group">
+                    <label>Current Password</label>
+                    <input type="password" id="currentPassword" required>
+                </div>
+                <div class="form-group">
+                    <label>New Password</label>
+                    <input type="password" id="newPassword" required>
+                </div>
+                <div class="form-group">
+                    <label>Confirm New Password</label>
+                    <input type="password" id="confirmPassword" required>
+                </div>
+                <div class="modal-buttons">
+                    <button type="submit" class="save-btn">Update Password</button>
+                    <button type="button" class="cancel-modal-btn">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div id="profileModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit Profile</h3>
+                <span class="modal-close">&times;</span>
+            </div>
+            <form id="profileForm">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="fullName" value="Sazid Ahmed" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="profileEmail" value="sazid@cuet.ac.bd" required>
+                </div>
+                <div class="form-group">
+                    <label>Student ID</label>
+                    <input type="text" id="studentId" value="2021XXXX" required>
+                </div>
+                <div class="form-group">
+                    <label>Department</label>
+                    <input type="text" id="department" value="CSE" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="phone" placeholder="Enter phone number">
+                </div>
+                <div class="modal-buttons">
+                    <button type="submit" class="save-btn">Save Changes</button>
+                    <button type="button" class="cancel-modal-btn">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Preferences Modal -->
+    <div id="notificationModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Notification Preferences</h3>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="notification-settings">
+                <div class="notification-option">
+                    <label>Workout Reminders</label>
+                    <input type="checkbox" id="workoutReminders" checked>
+                </div>
+                <div class="notification-option">
+                    <label>Gym Status Updates</label>
+                    <input type="checkbox" id="gymStatusUpdates" checked>
+                </div>
+                <div class="notification-option">
+                    <label>Promotional Offers</label>
+                    <input type="checkbox" id="promotions">
+                </div>
+                <div class="notification-option">
+                    <label>Email Notifications</label>
+                    <input type="checkbox" id="emailNotifications" checked>
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button class="save-btn" id="saveNotifications">Save Preferences</button>
+                <button class="cancel-modal-btn" id="cancelNotifications">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- About App Modal -->
+    <div id="aboutModal" class="modal">
+        <div class="modal-content about-content">
+            <div class="modal-header">
+                <h3>About CUET Gym Assistant</h3>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="about-body">
+                <div class="app-icon">💪</div>
+                <h2>CUET Gym Assistant</h2>
+                <p>Version 1.0.0</p>
+                <p>A comprehensive gym management system for CUET students.</p>
+                <div class="about-features">
+                    <h4>Features:</h4>
+                    <ul>
+                        <li>✓ QR Code Check-in/out System</li>
+                        <li>✓ Workout Tracking & History</li>
+                        <li>✓ Equipment Tutorials</li>
+                        <li>✓ Live Gym Status</li>
+                        <li>✓ Schedule Management</li>
+                    </ul>
+                </div>
+                <p class="copyright">© 2024 CUET Gym Assistant. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Help & Support Modal -->
+    <div id="helpModal" class="modal">
+        <div class="modal-content help-content">
+            <div class="modal-header">
+                <h3>Help & Support</h3>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="help-body">
+                <div class="help-section">
+                    <span class="material-icons">support_agent</span>
+                    <div>
+                        <h4>Contact Support</h4>
+                        <p>Email: support@cuetgym.com</p>
+                        <p>Phone: +880 1234 567890</p>
+                    </div>
+                </div>
+                <div class="help-section">
+                    <span class="material-icons">schedule</span>
+                    <div>
+                        <h4>Support Hours</h4>
+                        <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+                        <p>Saturday: 10:00 AM - 4:00 PM</p>
+                    </div>
+                </div>
+                <div class="help-section">
+                    <span class="material-icons">faq</span>
+                    <div>
+                        <h4>FAQs</h4>
+                        <p><strong>How to check in?</strong> - Use QR scanner at gym entrance</p>
+                        <p><strong>How to track workouts?</strong> - Go to Workout Tracker page</p>
+                        <p><strong>Forgot password?</strong> - Click "Forgot Password" on login page</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms & Conditions Modal -->
+    <div id="termsModal" class="modal">
+        <div class="modal-content terms-content">
+            <div class="modal-header">
+                <h3>Terms & Conditions</h3>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="terms-body">
+                <h4>1. Acceptance of Terms</h4>
+                <p>By using CUET Gym Assistant, you agree to these terms.</p>
+                <h4>2. Gym Access</h4>
+                <p>Valid student ID required for gym access. Maximum 1 hour per session.</p>
+                <h4>3. Code of Conduct</h4>
+                <p>Follow gym rules and maintain proper etiquette.</p>
+                <h4>4. Privacy</h4>
+                <p>Your data is protected and not shared with third parties.</p>
+                <h4>5. Updates</h4>
+                <p>We reserve the right to update these terms at any time.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Privacy Settings Modal -->
+    <div id="privacyModal" class="modal">
+        <div class="modal-content privacy-content">
+            <div class="modal-header">
+                <h3>Privacy Settings</h3>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="privacy-body">
+                <div class="privacy-option">
+                    <label>Share workout data for statistics</label>
+                    <input type="checkbox" id="shareData" checked>
+                </div>
+                <div class="privacy-option">
+                    <label>Show my name in gym status</label>
+                    <input type="checkbox" id="showName">
+                </div>
+                <div class="privacy-option">
+                    <label>Allow contact via email</label>
+                    <input type="checkbox" id="contactEmail" checked>
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button class="save-btn" id="savePrivacy">Save Privacy Settings</button>
+                <button class="cancel-modal-btn" id="cancelPrivacy">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../scripts/settings.js"></script>
+</body>
+</html>

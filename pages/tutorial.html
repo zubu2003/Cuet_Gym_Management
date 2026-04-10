@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorials | CUET Gym Assistant</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles/dashboard.css">
+    <link rel="stylesheet" href="../styles/tutorial.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <!-- Top Navbar -->
+    <header class="dashboard-navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <button class="hamburger" id="sidebar-toggle">
+                    <span class="material-icons">menu</span>
+                </button>
+                <div class="logo">
+                    <a href="index.html" class="logo-link">
+                        <span class="logo-icon">💪</span>
+                        <span class="logo-text">CUET GYM ASSISTANT</span>
+                    </a>
+                </div>
+            </div>
+            <div class="nav-right">
+                <a href="index.html" class="nav-link">
+                    <span class="material-icons">home</span>
+                    <span>Home</span>
+                </a>
+                <a href="schedule.html" class="nav-link">
+                    <span class="material-icons">schedule</span>
+                    <span>Schedule</span>
+                </a>
+                <button class="nav-icon-btn">
+                    <span class="material-icons">notifications</span>
+                </button>
+                <button class="nav-icon-btn">
+                    <span class="material-icons">account_circle</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Dashboard Menu</h3>
+                <ul class="sidebar-menu">
+                    <li>
+                        <a href="dashboard.html">
+                            <span class="material-icons">dashboard</span>
+                            <span>Overview</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="stats.html">
+                            <span class="material-icons">bar_chart</span>
+                            <span>Stats</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="tutorial.html">
+                            <span class="material-icons">ondemand_video</span>
+                            <span>Tutorials</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="schedule.html">
+                            <span class="material-icons">event</span>
+                            <span>Schedule</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="qr.html">
+                            <span class="material-icons">qr_code_scanner</span>
+                            <span>QR Scanner</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="workout.html">
+                            <span class="material-icons">fitness_center</span>
+                            <span>Workout Tracker</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html">
+                            <span class="material-icons">settings</span>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="gym-status">
+                <h4>Gym Status</h4>
+                <div class="gym-status-box">
+                    <div class="gym-status-main">
+                        <span class="gym-status-count">21 / 40</span>
+                    </div>
+                    <div class="gym-status-label">Currently Inside</div>
+                    <div class="gym-status-state status-ok">✅ Not Crowded</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Tutorial Header Card -->
+            <section class="card tutorial-header">
+                <span class="material-icons tutorial-icon">menu_book</span>
+                <div>
+                    <h3>Equipment Tutorials</h3>
+                    <p>Learn proper techniques for gym equipment</p>
+                </div>
+            </section>
+
+            <!-- Search Bar -->
+            <section class="card tutorial-search">
+                <div class="search-box">
+                    <span class="material-icons">search</span>
+                    <input type="text" placeholder="Search equipment..." id="searchInput">
+                </div>
+            </section>
+
+            <!-- Equipment Categories -->
+            <section class="card tutorial-categories">
+                <div class="category-btns">
+                    <button class="category-btn active">All Equipment</button>
+                    <button class="category-btn">Cardio</button>
+                    <button class="category-btn">Strength</button>
+                    <button class="category-btn">Free Weights</button>
+                    <button class="category-btn">Cable Machines</button>
+                </div>
+            </section>
+
+            <!-- Equipment Grid -->
+            <section class="card tutorial-select">
+                <h4>Choose Equipment</h4>
+                <div class="equipment-grid" id="equipmentGrid">
+                    <div class="equipment-card" data-category="cardio">
+                        <span class="material-icons">directions_run</span>
+                        <span class="equipment-name">Treadmill</span>
+                        <span class="equipment-desc">Running & walking machine</span>
+                        <button class="watch-btn">Watch Tutorial →</button>
+                    </div>
+                    <div class="equipment-card" data-category="cardio">
+                        <span class="material-icons">pedal_bike</span>
+                        <span class="equipment-name">Exercise Bike</span>
+                        <span class="equipment-desc">Stationary cycling</span>
+                        <button class="watch-btn">Watch Tutorial →</button>
+                    </div>
+                    <div class="equipment-card" data-category="cardio">
+                        <span class="material-icons">fitness_center</span>
+                        <span class="equipment-name">Elliptical</span>
+                        <span class="equipment-desc">Full body cardio</span>
+                        <button class="watch-btn">Watch Tutorial →</button>
+                    </div>
+                    <div class="equipment-card" data-category="strength">
+                        <span class="material-icons">fitness_center</span>
+                        <span class="equipment-name">Bench Press</span>
+                        <span class="equipment-desc">Chest workout machine</span>
+                        <button class="watch-btn">Watch Tutorial →</button>
+                    </div>
+                    <div class="equipment-card" data-category="strength">
+                        <span class="material-icons">fitness_center</span>
+                        <span class="equipment-name">Leg Press</span>
+                        <span class="equipment-desc">Leg strengthening</span>
+                        <button class="watch-btn">Watch Tutorial →</button>
+                    </div>
+                    <div class="equipment-card" data-category="free-weights">
+                        <span class="material-icons">fitness_center</span>
+                        <span class="equipment-name">Dumbbells</span>
+                        <span class="equipment-desc">Free weight training</span>
+                        <button class="watch-btn">Watch Tutorial →</button>
+                    </div>
+                    <div class="equipment-card" data-category="free-weights">
+                        <span class="material-icons">fitness_center</span>
+                        <span class="equipment-name">Barbell</span>
+                        <span class="equipment-desc">Olympic weight lifting</span>
+                        <button class="watch-btn">Watch Tutorial →</button>
+                    </div>
+                    <div class="equipment-card" data-category="cable">
+                        <span class="material-icons">fitness_center</span>
+                        <span class="equipment-name">Cable Crossover</span>
+                        <span class="equipment-desc">Cable machine workouts</span>
+                        <button class="watch-btn">Watch Tutorial →</button>
+                    </div>
+                    <div class="equipment-card" data-category="strength">
+                        <span class="material-icons">fitness_center</span>
+                        <span class="equipment-name">Pull-up Bar</span>
+                        <span class="equipment-desc">Back & arm workout</span>
+                        <button class="watch-btn">Watch Tutorial →</button>
+                    </div>
+                    <div class="equipment-card" data-category="cardio">
+                        <span class="material-icons">directions_run</span>
+                        <span class="equipment-name">Rowing Machine</span>
+                        <span class="equipment-desc">Full body cardio</span>
+                        <button class="watch-btn">Watch Tutorial →</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="../scripts/tutorial.js"></script>
+</body>
+</html>

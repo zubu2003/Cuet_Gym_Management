@@ -1,0 +1,433 @@
+/* CUET Gym Assistant - Premium Blue Theme */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #1e3c72;
+    --primary-dark: #0f2b4d;
+    --primary-light: #2a5298;
+    --accent: #60a5fa;
+    --bg: #e8eef5;
+    --card-bg: #f0f4f8;
+    --text-dark: #1a2a3a;
+    --text-light: #4a5568;
+    --white: #ffffff;
+    --gray: #94a3b8;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg);
+    color: var(--text-dark);
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Premium Navbar - Blue Gradient */
+.navbar {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 50%, var(--primary-light) 100%);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 800;
+    font-size: 1.6rem;
+    color: var(--white);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.logo-icon {
+    font-size: 2rem;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: white;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--white);
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.5rem 0;
+    transition: 0.3s;
+    position: relative;
+}
+
+.nav-links a:hover {
+    color: var(--accent);
+}
+
+.nav-links a.active {
+    color: var(--accent);
+}
+
+.nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 3px;
+}
+
+.login-btn {
+    background: linear-gradient(135deg, var(--white), #e0e7ff);
+    color: var(--primary);
+    border: none;
+    border-radius: 50px;
+    padding: 0.7rem 1.8rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Hero Section - Blue Gradient */
+.hero {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, var(--primary) 100%);
+    color: var(--white);
+    padding: 5rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(96, 165, 250, 0.1), transparent);
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 3rem;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-text {
+    flex: 1;
+}
+
+.hero-text h1 {
+    font-size: 4rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    white-space: nowrap;
+    color: white;
+}
+
+
+.highlight {
+    color: white;
+    
+    
+}
+
+.hero-text p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+    line-height: 1.6;
+    color: #e2e8f0;
+}
+
+.cta-btn {
+    background: linear-gradient(135deg, var(--accent), #3b82f6);
+    color: var(--white);
+    border: none;
+    border-radius: 50px;
+    padding: 1rem 2.2rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
+}
+
+.hero-image {
+    flex: 1;
+    text-align: center;
+}
+
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.25));
+}
+
+/* Features Section - No white background */
+.features {
+    background: #dce3ec;
+    padding: 5rem 0;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #c7d2fe, #a5b4fc);
+    color: var(--primary);
+    padding: 0.3rem 1rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.features-list {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.feature-card {
+    background: #f0f4f8;
+    border-radius: 20px;
+    padding: 2rem;
+    width: 220px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: 0.3s;
+    border: 1px solid rgba(30, 60, 114, 0.1);
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+.feature-icon {
+    font-size: 3.5rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+    color: var(--primary);
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.feature-card p {
+    color: var(--text-light);
+    font-size: 0.85rem;
+}
+
+/* Stats Section - Darker Blue */
+.stats {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary), var(--primary-light));
+    padding: 4rem 0;
+}
+
+.stats-list {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 1.8rem 2.5rem;
+    text-align: center;
+    min-width: 170px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.stat-card h3 {
+    color: var(--primary);
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 800;
+}
+
+.stat-card p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+/* Footer - Deep Blue */
+.footer {
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: var(--white);
+    padding: 3rem 0 1rem;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer-section h4 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.footer-section p {
+    color: #cbd5e1;
+    line-height: 1.6;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.6rem;
+    color: #cbd5e1;
+}
+
+.footer-section ul li a {
+    color: #cbd5e1;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: var(--accent);
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.social-icons a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 1.3rem;
+    opacity: 0.8;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #94a3b8;
+    font-size: 0.85rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 0 1rem;
+    }
+    
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    .hero-text h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .section-header h2 {
+        font-size: 1.8rem;
+    }
+    
+    .feature-card {
+        width: 180px;
+        padding: 1.5rem;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .social-icons {
+        justify-content: center;
+    }
+}

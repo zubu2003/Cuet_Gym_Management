@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stats | CUET Gym Assistant</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles/dashboard.css">
+    <link rel="stylesheet" href="../styles/stats.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <!-- Top Navbar -->
+    <header class="dashboard-navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <button class="hamburger" id="sidebar-toggle">
+                    <span class="material-icons">menu</span>
+                </button>
+                <div class="logo">
+                    <a href="index.html" class="logo-link">
+                        <span class="logo-icon">💪</span>
+                        <span class="logo-text">CUET GYM ASSISTANT</span>
+                    </a>
+                </div>
+            </div>
+            <div class="nav-right">
+                <a href="index.html" class="nav-link">
+                    <span class="material-icons">home</span>
+                    <span>Home</span>
+                </a>
+                <a href="schedule.html" class="nav-link">
+                    <span class="material-icons">schedule</span>
+                    <span>Schedule</span>
+                </a>
+                <button class="nav-icon-btn">
+                    <span class="material-icons">notifications</span>
+                </button>
+                <button class="nav-icon-btn">
+                    <span class="material-icons">account_circle</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Dashboard Menu</h3>
+                <ul class="sidebar-menu">
+                    <li>
+                        <a href="dashboard.html">
+                            <span class="material-icons">dashboard</span>
+                            <span>Overview</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="stats.html">
+                            <span class="material-icons">bar_chart</span>
+                            <span>Stats</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tutorial.html">
+                            <span class="material-icons">ondemand_video</span>
+                            <span>Tutorials</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="schedule.html">
+                            <span class="material-icons">event</span>
+                            <span>Schedule</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="qr.html">
+                            <span class="material-icons">qr_code_scanner</span>
+                            <span>QR Scanner</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="workout.html">
+                            <span class="material-icons">fitness_center</span>
+                            <span>Workout Tracker</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html">
+                            <span class="material-icons">settings</span>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="gym-status">
+                <h4>Gym Status</h4>
+                <div class="gym-status-box">
+                    <div class="gym-status-main">
+                        <span class="gym-status-count">21 / 40</span>
+                    </div>
+                    <div class="gym-status-label">Currently Inside</div>
+                    <div class="gym-status-state status-ok">✅ Not Crowded</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Stats Header Card -->
+            <section class="card stats-header">
+                <span class="material-icons stats-icon">bar_chart</span>
+                <div>
+                    <h3>Statistics</h3>
+                    <p>Track your gym performance and progress</p>
+                </div>
+            </section>
+
+            <!-- Period Selection Card -->
+            <section class="card stats-period">
+                <label>Select Period</label>
+                <div class="period-btns">
+                    <button class="period-btn active">Weekly</button>
+                    <button class="period-btn">Monthly</button>
+                    <button class="period-btn">Yearly</button>
+                </div>
+            </section>
+
+            <!-- Stats Summary Cards -->
+            <section class="card stats-summary">
+                <div class="summary-item">
+                    <span class="material-icons">event</span>
+                    <div class="summary-number">5</div>
+                    <div class="summary-label">Days Attended</div>
+                </div>
+                <div class="summary-item">
+                    <span class="material-icons">timer</span>
+                    <div class="summary-number">12h 30m</div>
+                    <div class="summary-label">Total Hours</div>
+                </div>
+                <div class="summary-item">
+                    <span class="material-icons">fitness_center</span>
+                    <div class="summary-number">8</div>
+                    <div class="summary-label">Workouts</div>
+                </div>
+                <div class="summary-item">
+                    <span class="material-icons">local_fire_department</span>
+                    <div class="summary-number">2,450</div>
+                    <div class="summary-label">Calories Burned</div>
+                </div>
+            </section>
+
+            <!-- Equipment Usage Card -->
+            <section class="card stats-equipment">
+                <h4>Equipment Usage</h4>
+                <p>Number of times each equipment was used this week</p>
+                <div class="equipment-list">
+                    <div class="equipment-item">
+                        <div class="equipment-info">
+                            <span class="material-icons">fitness_center</span>
+                            <span>Treadmill</span>
+                        </div>
+                        <span class="equipment-count">12 times</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-info">
+                            <span class="material-icons">fitness_center</span>
+                            <span>Dumbbells</span>
+                        </div>
+                        <span class="equipment-count">8 times</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-info">
+                            <span class="material-icons">fitness_center</span>
+                            <span>Bench Press</span>
+                        </div>
+                        <span class="equipment-count">6 times</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-info">
+                            <span class="material-icons">fitness_center</span>
+                            <span>Leg Press</span>
+                        </div>
+                        <span class="equipment-count">5 times</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-info">
+                            <span class="material-icons">fitness_center</span>
+                            <span>Pull-up Bar</span>
+                        </div>
+                        <span class="equipment-count">4 times</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Weekly Chart Card -->
+            <section class="card stats-chart">
+                <h4>Weekly Activity</h4>
+                <div class="chart-bars">
+                    <div class="chart-bar">
+                        <div class="bar-label">Mon</div>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="height: 70%"></div>
+                        </div>
+                        <div class="bar-value">70%</div>
+                    </div>
+                    <div class="chart-bar">
+                        <div class="bar-label">Tue</div>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="height: 85%"></div>
+                        </div>
+                        <div class="bar-value">85%</div>
+                    </div>
+                    <div class="chart-bar">
+                        <div class="bar-label">Wed</div>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="height: 60%"></div>
+                        </div>
+                        <div class="bar-value">60%</div>
+                    </div>
+                    <div class="chart-bar">
+                        <div class="bar-label">Thu</div>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="height: 90%"></div>
+                        </div>
+                        <div class="bar-value">90%</div>
+                    </div>
+                    <div class="chart-bar">
+                        <div class="bar-label">Fri</div>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="height: 75%"></div>
+                        </div>
+                        <div class="bar-value">75%</div>
+                    </div>
+                    <div class="chart-bar">
+                        <div class="bar-label">Sat</div>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="height: 50%"></div>
+                        </div>
+                        <div class="bar-value">50%</div>
+                    </div>
+                    <div class="chart-bar">
+                        <div class="bar-label">Sun</div>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="height: 40%"></div>
+                        </div>
+                        <div class="bar-value">40%</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="../scripts/stats.js"></script>
+</body>
+</html>

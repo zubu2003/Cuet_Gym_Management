@@ -1,0 +1,228 @@
+/* Schedule Page Custom Styles */
+
+/* Schedule Header */
+.schedule-header {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    border: none;
+}
+
+.schedule-header h3 {
+    margin: 0 0 0.2rem 0;
+    font-size: 1.4rem;
+    color: white;
+}
+
+.schedule-header p {
+    margin: 0;
+    color: #cbd5e1;
+    font-size: 0.85rem;
+}
+
+.schedule-icon {
+    font-size: 2.5rem;
+    color: white;
+}
+
+/* Schedule Selection */
+.schedule-select {
+    background: white;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.select-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.select-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.select-label .material-icons {
+    color: #1e3c72;
+    font-size: 1.2rem;
+}
+
+.select-label label {
+    font-weight: 600;
+    color: #1e3c72;
+    font-size: 0.9rem;
+}
+
+.select-btns {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.select-btn {
+    background: #f8fafc;
+    color: #1e3c72;
+    border: 1px solid #e2e8f0;
+    border-radius: 25px;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.select-btn .material-icons {
+    font-size: 1rem;
+}
+
+.select-btn.active {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    border-color: transparent;
+}
+
+.select-btn:hover:not(.active) {
+    background: #e2e8f0;
+}
+
+/* Schedule Info Card */
+.schedule-info {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: #e0e7ff;
+    border-left: 4px solid #1e3c72;
+}
+
+.schedule-info .material-icons {
+    color: #1e3c72;
+    font-size: 1.3rem;
+}
+
+.schedule-info span:last-child {
+    color: #1e3c72;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+/* Weekly Schedule */
+.schedule-week h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 0 1rem 0;
+    color: #1e3c72;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.schedule-week h4 .material-icons {
+    font-size: 1.2rem;
+}
+
+/* Schedule Table */
+.schedule-table-content {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.schedule-table-content th {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    padding: 0.8rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.schedule-table-content td {
+    border-bottom: 1px solid #e2e8f0;
+    padding: 0.8rem;
+    color: #1a2a3a;
+    font-size: 0.85rem;
+}
+
+.schedule-table-content tr:last-child td {
+    border-bottom: none;
+}
+
+.schedule-table-content tr:hover td {
+    background: #f8fafc;
+}
+
+/* Schedule Notes */
+.schedule-notes {
+    background: #fffbeb;
+    border-left: 4px solid #f59e0b;
+}
+
+.schedule-notes h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 0 0.8rem 0;
+    color: #d97706;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.schedule-notes h4 .material-icons {
+    font-size: 1.1rem;
+}
+
+.schedule-notes ul {
+    margin: 0;
+    padding-left: 1.5rem;
+}
+
+.schedule-notes ul li {
+    margin-bottom: 0.5rem;
+    color: #4a5568;
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.schedule-notes ul li:last-child {
+    margin-bottom: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .select-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .select-btns {
+        width: 100%;
+    }
+    
+    .select-btn {
+        flex: 1;
+        justify-content: center;
+    }
+    
+    .schedule-table-content th,
+    .schedule-table-content td {
+        padding: 0.5rem;
+        font-size: 0.75rem;
+    }
+    
+    .schedule-header {
+        flex-direction: column;
+        text-align: center;
+    }
+}

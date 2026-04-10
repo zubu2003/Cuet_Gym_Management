@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | CUET Gym Assistant</title>
+    <link rel="stylesheet" href="../styles/signup.css">
+</head>
+<body>
+    <div class="signup-container">
+        <div class="signup-card">
+            <div class="signup-header">
+                <h1>Create Account</h1>
+
+            </div>
+            
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="fullname">Full Name</label>
+                    <input type="text" id="fullname" name="fullname" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" id="dob" name="dob" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="contact">Contact Number</label>
+                    <input type="tel" id="contact" name="contact" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirmpass">Confirm Password</label>
+                    <input type="password" id="confirmpass" name="confirmpass" required>
+                </div>
+                
+                <button type="submit" class="signup-btn">Sign Up</button>
+                
+                <div class="login-link">
+                    Already have an account? <a href="login.html">Login here</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="../scripts/signup.js"></script>
+</body>
+</html>

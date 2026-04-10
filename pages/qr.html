@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Scanner | CUET Gym Assistant</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles/dashboard.css">
+    <link rel="stylesheet" href="../styles/qr.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Instascan for QR scanning -->
+    <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+</head>
+<body>
+    <!-- Top Navbar -->
+    <header class="dashboard-navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <button class="hamburger" id="sidebar-toggle">
+                    <span class="material-icons">menu</span>
+                </button>
+                <div class="logo">
+                    <a href="index.html" class="logo-link">
+                        <span class="logo-icon">💪</span>
+                        <span class="logo-text">CUET GYM ASSISTANT</span>
+                    </a>
+                </div>
+            </div>
+            <div class="nav-right">
+                <a href="index.html" class="nav-link">
+                    <span class="material-icons">home</span>
+                    <span>Home</span>
+                </a>
+                <a href="schedule.html" class="nav-link">
+                    <span class="material-icons">schedule</span>
+                    <span>Schedule</span>
+                </a>
+                <button class="nav-icon-btn">
+                    <span class="material-icons">notifications</span>
+                </button>
+                <button class="nav-icon-btn">
+                    <span class="material-icons">account_circle</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Dashboard Menu</h3>
+                <ul class="sidebar-menu">
+                    <li>
+                        <a href="dashboard.html">
+                            <span class="material-icons">dashboard</span>
+                            <span>Overview</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="stats.html">
+                            <span class="material-icons">bar_chart</span>
+                            <span>Stats</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tutorial.html">
+                            <span class="material-icons">ondemand_video</span>
+                            <span>Tutorials</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="schedule.html">
+                            <span class="material-icons">event</span>
+                            <span>Schedule</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="qr.html">
+                            <span class="material-icons">qr_code_scanner</span>
+                            <span>QR Scanner</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="workout.html">
+                            <span class="material-icons">fitness_center</span>
+                            <span>Workout Tracker</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html">
+                            <span class="material-icons">settings</span>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="gym-status">
+                <h4>Gym Status</h4>
+                <div class="gym-status-box">
+                    <div class="gym-status-main">
+                        <span class="gym-status-count">21 / 40</span>
+                    </div>
+                    <div class="gym-status-label">Currently Inside</div>
+                    <div class="gym-status-state status-ok">✅ Not Crowded</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- QR Header Card -->
+            <section class="card qr-header">
+                <span class="material-icons qr-icon">qr_code_scanner</span>
+                <div>
+                    <h3>QR Code Scanner</h3>
+                    <p>Scan the dynamic QR code to check in or out of the gym</p>
+                </div>
+            </section>
+
+            <!-- Scanner Card -->
+            <section class="card qr-scanner">
+                <div class="scanner-container">
+                    <video id="preview" class="scanner-video"></video>
+                    
+                    <div class="scanner-controls">
+                        <button id="startScanBtn" class="scan-btn start-btn">
+                            <span class="material-icons">cameraswitch</span> Start Camera
+                        </button>
+                        <button id="stopScanBtn" class="scan-btn stop-btn" disabled>
+                            <span class="material-icons">stop</span> Stop Camera
+                        </button>
+                    </div>
+                    
+                    <div id="scanResult" class="scan-result"></div>
+                    
+                    <div id="currentStatus" class="current-status">
+                        <h4>Your Current Status</h4>
+                        <div id="statusDisplay" class="status-display">
+                            <span class="material-icons">info</span>
+                            <span>Not checked in</span>
+                        </div>
+                    </div>
+
+                    <div id="attendanceLog" class="attendance-log">
+                        <h4>Today's Activity</h4>
+                        <div id="logList" class="log-list">
+                            <p class="no-log">No activity yet. Scan QR code to check in/out.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Instructions Card -->
+            <section class="card qr-instructions">
+                <h4>Instructions</h4>
+                <ul>
+                    <li>📸 Click "Start Camera" to open your camera</li>
+                    <li>📱 Point your camera at the dynamic QR code displayed by the admin</li>
+                    <li>✅ First scan = Check IN (records entry time)</li>
+                    <li>🔄 Second scan = Check OUT (records exit time)</li>
+                    <li>📊 Your status will show if you're currently inside the gym</li>
+                    <li>💡 Ensure good lighting for better scanning</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <script src="../scripts/qr.js"></script>
+</body>
+</html>

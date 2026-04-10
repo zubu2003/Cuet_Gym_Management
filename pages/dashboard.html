@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | CUET Gym Assistant</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles/dashboard.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <!-- Top Navbar -->
+    <header class="dashboard-navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <button class="hamburger" id="sidebar-toggle">
+                    <span class="material-icons">menu</span>
+                </button>
+                <div class="logo">
+                    <a href="index.html" class="logo-link">
+                        <span class="logo-icon">💪</span>
+                        <span class="logo-text">CUET GYM ASSISTANT</span>
+                    </a>
+                </div>
+            </div>
+            <div class="nav-right">
+                <a href="index.html" class="nav-link">
+                    <span class="material-icons">home</span>
+                    <span>Home</span>
+                </a>
+                <a href="schedule.html" class="nav-link">
+                    <span class="material-icons">schedule</span>
+                    <span>Schedule</span>
+                </a>
+                <button class="nav-icon-btn">
+                    <span class="material-icons">notifications</span>
+                </button>
+                <button class="nav-icon-btn">
+                    <span class="material-icons">account_circle</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Dashboard</h3>
+                <ul class="sidebar-menu">
+                    <li class="active">
+                        <a href="#">
+                            <span class="material-icons">dashboard</span>
+                            <span>Overview</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="stats.html">
+                            <span class="material-icons">bar_chart</span>
+                            <span>Stats</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="schedule.html">
+                            <span class="material-icons">event</span>
+                            <span>Schedule</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="qr.html">
+                            <span class="material-icons">qr_code_scanner</span>
+                            <span>QR Scanner</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="workout.html">
+                            <span class="material-icons">fitness_center</span>
+                            <span>Workout Tracker</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tutorial.html">
+                            <span class="material-icons">ondemand_video</span>
+                            <span>Tutorials</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html">
+                            <span class="material-icons">settings</span>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="gym-status">
+                <h4>Gym Status</h4>
+                <div class="gym-status-box">
+                    <div class="gym-status-main">
+                        <span class="gym-status-count">21 / 40</span>
+                    </div>
+                    <div class="gym-status-label">Currently Inside</div>
+                    <div class="gym-status-state status-ok">✅ Not Crowded</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- User Greeting Card -->
+            <section class="card user-greeting">
+                <div class="user-avatar">
+                    <span class="material-icons">account_circle</span>
+                </div>
+                <div class="user-info">
+                    <h2>Hi, Sazid!</h2>
+                    <p class="user-status-green">✅ You are currently INSIDE the gym</p>
+                    <p class="user-timer">
+                        <span class="material-icons">timer</span> 
+                        Time remaining: <span id="time-remaining">45:23</span>
+                    </p>
+                </div>
+            </section>
+
+            <!-- Live Gym Status Card -->
+            <section class="card live-gym-status">
+                <h3>Live Gym Status</h3>
+                <div class="live-status-row">
+                    <div class="live-status-capacity">
+                        <div class="live-status-label">Current Capacity</div>
+                        <div class="live-status-value">
+                            <span id="current-capacity">21</span> / <span id="max-capacity">40</span>
+                        </div>
+                        <div class="live-status-bar-bg">
+                            <div class="live-status-bar" style="width: 52.5%"></div>
+                        </div>
+                        <div class="live-status-state status-ok">Status: Not Crowded</div>
+                    </div>
+                    <div class="live-status-side">
+                        <div class="live-status-best">🏆 Best Time: <span>4 PM - 6 PM</span></div>
+                        <div class="live-status-peak">📊 Peak Hours: <span>4 PM - 7 PM</span></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Actions Card -->
+            <section class="card quick-actions">
+                <h3>Quick Actions</h3>
+                <div class="actions-list">
+                    <a href="qr.html" class="action-btn">
+                        <span class="material-icons action-icon orange">qr_code_scanner</span>
+                        <span>Scan QR</span>
+                    </a>
+                    <a href="workout.html" class="action-btn">
+                        <span class="material-icons action-icon green">fitness_center</span>
+                        <span>Add Workout</span>
+                    </a>
+                    <a href="tutorial.html" class="action-btn">
+                        <span class="material-icons action-icon purple">help</span>
+                        <span>Equipment Help</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Today's Workout Card -->
+            <section class="card todays-workout">
+                <h3>
+                    Today's Workout
+                    <button class="edit-btn">
+                        <span class="material-icons">edit</span> Edit
+                    </button>
+                </h3>
+                <ul class="workout-list">
+                    <li>Push-Ups <span class="workout-value">35 reps</span></li>
+                    <li>Sit-Ups <span class="workout-value">25 reps</span></li>
+                    <li>Treadmill <span class="workout-value">15 mins</span></li>
+                    <li>Weight Training <span class="workout-value">30 mins</span></li>
+                </ul>
+                <button class="save-btn">Save Workout</button>
+            </section>
+        </main>
+    </div>
+
+    <script src="../scripts/dashboard.js"></script>
+</body>
+</html>

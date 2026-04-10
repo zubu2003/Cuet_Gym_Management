@@ -1,0 +1,556 @@
+/* Dashboard Page Styles - CUET Gym Assistant */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #1e3c72;
+    --primary-dark: #0f2b4d;
+    --primary-light: #2a5298;
+    --accent: #60a5fa;
+    --bg: #e8eef5;
+    --white: #ffffff;
+    --gray: #94a3b8;
+    --secondary: #1a2a3a;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg);
+    overflow-x: hidden;
+}
+
+/* Dashboard Navbar */
+.dashboard-navbar {
+    background: linear-gradient(135deg, #1e3c72 0%, #1a3650 50%, #2a5298 100%);
+    padding: 0.8rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 100%;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.hamburger:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.hamburger .material-icons {
+    font-size: 1.5rem;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: white;
+}
+
+.logo-icon {
+    font-size: 1.5rem;
+}
+
+.logo-text {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.nav-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #60a5fa;
+}
+
+.nav-link .material-icons {
+    font-size: 1.1rem;
+}
+
+.nav-icon-btn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0.4rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    transition: 0.3s;
+}
+
+.nav-icon-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-icon-btn .material-icons {
+    font-size: 1.3rem;
+}
+
+/* Dashboard Wrapper */
+.dashboard-wrapper {
+    display: flex;
+    min-height: calc(100vh - 60px);
+}
+
+/* Sidebar */
+.sidebar {
+    width: 260px;
+    background: var(--white);
+    border-right: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.5rem 0;
+    position: sticky;
+    top: 60px;
+    height: calc(100vh - 60px);
+    overflow-y: auto;
+}
+
+.sidebar-section {
+    flex: 1;
+}
+
+.sidebar-title {
+    font-size: 1.25rem;
+    color: var(--primary);
+    letter-spacing: 1px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 0 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.sidebar-menu {
+    list-style: none;
+}
+
+.sidebar-menu li {
+    margin: 0.3rem 0.8rem;
+    border-radius: 12px;
+    transition: 0.2s;
+}
+
+.sidebar-menu li a {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.7rem 1rem;
+    text-decoration: none;
+    color: #4a5568;
+    border-radius: 12px;
+    transition: 0.2s;
+}
+
+.sidebar-menu li a .material-icons {
+    font-size: 1.2rem;
+    color: #6c757d;
+}
+
+.sidebar-menu li.active a {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+}
+
+.sidebar-menu li.active a .material-icons {
+    color: white;
+}
+
+.sidebar-menu li:hover:not(.active) a {
+    background: #e8eef5;
+    color: var(--primary);
+}
+
+.sidebar-menu li:hover:not(.active) a .material-icons {
+    color: var(--primary);
+}
+
+/* Gym Status in Sidebar */
+.gym-status {
+    border-top: 1px solid #e0e0e0;
+    padding: 1.5rem 1rem 0 1rem;
+    margin-top: 1rem;
+}
+
+.gym-status h4 {
+    font-size: 0.85rem;
+    color: var(--primary);
+    margin-bottom: 0.8rem;
+}
+
+.gym-status-box {
+    background: var(--bg);
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 0.8rem;
+    text-align: center;
+}
+
+.gym-status-main {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.gym-status-label {
+    font-size: 0.7rem;
+    color: var(--gray);
+    margin-top: 0.2rem;
+}
+
+.gym-status-state {
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    font-weight: 500;
+}
+
+.status-ok {
+    color: #2ecc40;
+}
+
+/* Dashboard Main Content */
+.dashboard-main {
+    flex: 1;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    overflow-y: auto;
+}
+
+/* Cards */
+.card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e9ecef;
+}
+
+.card h3 {
+    color: var(--primary);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+/* User Greeting */
+.user-greeting {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.user-avatar {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-avatar .material-icons {
+    font-size: 3rem;
+    color: white;
+}
+
+.user-info h2 {
+    font-size: 1.5rem;
+    color: var(--secondary);
+    margin-bottom: 0.3rem;
+}
+
+.user-status-green {
+    color: #2ecc40;
+    font-weight: 500;
+    font-size: 0.85rem;
+    margin: 0.2rem 0;
+}
+
+.user-timer {
+    color: var(--gray);
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-top: 0.3rem;
+}
+
+.user-timer .material-icons {
+    font-size: 1rem;
+}
+
+/* Live Gym Status */
+.live-status-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.live-status-capacity {
+    flex: 1;
+}
+
+.live-status-label {
+    color: var(--gray);
+    font-size: 0.8rem;
+}
+
+.live-status-value {
+    font-size: 1.8rem;
+    color: var(--primary);
+    font-weight: bold;
+}
+
+.live-status-bar-bg {
+    width: 100%;
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    margin: 0.8rem 0;
+    overflow: hidden;
+}
+
+.live-status-bar {
+    height: 100%;
+    background: #2ecc40;
+    border-radius: 4px;
+    transition: width 0.4s;
+}
+
+.live-status-state {
+    font-size: 0.85rem;
+}
+
+.live-status-side {
+    min-width: 160px;
+}
+
+.live-status-best, .live-status-peak {
+    font-size: 0.85rem;
+    color: #4a5568;
+    margin-bottom: 0.5rem;
+}
+
+.live-status-best span, .live-status-peak span {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+/* Quick Actions */
+.actions-list {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.action-btn {
+    background: var(--bg);
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    min-width: 120px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--secondary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.action-btn:hover {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.action-icon {
+    font-size: 1.8rem;
+}
+
+.action-icon.orange {
+    color: #ff9800;
+}
+
+.action-icon.green {
+    color: #2ecc40;
+}
+
+.action-icon.purple {
+    color: #9b59b6;
+}
+
+.action-btn:hover .action-icon {
+    color: white;
+}
+
+/* Today's Workout */
+.todays-workout h3 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.edit-btn {
+    background: #e0e7ff;
+    color: var(--primary);
+    border: none;
+    border-radius: 20px;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    transition: 0.2s;
+}
+
+.edit-btn:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.workout-list {
+    list-style: none;
+    margin: 1rem 0;
+}
+
+.workout-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.workout-value {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.save-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 0.7rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-top: 0.5rem;
+}
+
+.save-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(30, 60, 114, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .dashboard-navbar {
+        padding: 0.8rem 1rem;
+    }
+    
+    .hamburger {
+        display: block;
+    }
+    
+    .nav-link span:last-child {
+        display: none;
+    }
+    
+    .nav-link .material-icons {
+        font-size: 1.3rem;
+    }
+    
+    .logo-text {
+        font-size: 0.9rem;
+    }
+    
+    .sidebar {
+        position: fixed;
+        left: -260px;
+        top: 60px;
+        z-index: 99;
+        transition: left 0.3s ease;
+        height: calc(100vh - 60px);
+    }
+    
+    .sidebar.open {
+        left: 0;
+    }
+    
+    .dashboard-main {
+        padding: 1rem;
+    }
+    
+    .user-greeting {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .actions-list {
+        justify-content: center;
+    }
+    
+    .live-status-row {
+        flex-direction: column;
+    }
+    
+    .live-status-side {
+        width: 100%;
+    }
+}
