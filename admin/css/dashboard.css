@@ -1,0 +1,208 @@
+/* Dashboard Specific Styles */
+
+/* Weekly Usage Card */
+.weekly-usage-card {
+    background: linear-gradient(135deg, #ffffff, #f8fafc);
+}
+
+.week-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.week-nav-btn {
+    background: #e2e8f0;
+    border: none;
+    padding: 0.3rem 0.8rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: 0.2s;
+}
+
+.week-nav-btn:hover {
+    background: #1e3c72;
+    color: white;
+}
+
+.week-range {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #1e3c72;
+}
+
+/* Weekly Summary Grid */
+.weekly-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.summary-box {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    border-radius: 12px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: white;
+}
+
+.summary-icon .material-icons {
+    font-size: 2rem;
+    opacity: 0.8;
+}
+
+.summary-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.summary-label {
+    font-size: 0.7rem;
+    opacity: 0.8;
+}
+
+.summary-value {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+/* Daily Breakdown */
+.daily-breakdown h4 {
+    margin: 0 0 1rem 0;
+    color: #1e3c72;
+    font-size: 0.9rem;
+}
+
+#weeklyTableBody .trend-up {
+    color: #22c55e;
+}
+
+#weeklyTableBody .trend-down {
+    color: #ef4444;
+}
+
+#weeklyTableBody .trend-neutral {
+    color: #f59e0b;
+}
+
+/* Comparison Section */
+.comparison-section {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+.comparison-section h4 {
+    margin: 0 0 1rem 0;
+    color: #1e3c72;
+    font-size: 0.9rem;
+}
+
+.comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.comparison-card {
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: center;
+    border-left: 3px solid #1e3c72;
+}
+
+.comparison-label {
+    display: block;
+    font-size: 0.7rem;
+    color: #64748b;
+    margin-bottom: 0.3rem;
+}
+
+.comparison-value {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #1e3c72;
+}
+
+.comparison-trend {
+    display: inline-block;
+    font-size: 0.7rem;
+    margin-top: 0.3rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 20px;
+}
+
+.trend-positive {
+    background: #dcfce7;
+    color: #22c55e;
+}
+
+.trend-negative {
+    background: #fee2e2;
+    color: #ef4444;
+}
+
+.trend-neutral {
+    background: #fef3c7;
+    color: #f59e0b;
+}
+
+/* Week Selector */
+#weekSelect {
+    padding: 0.3rem 0.8rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--white);
+    font-size: 0.8rem;
+}
+
+#forceCheckoutAllBtn {
+    background: var(--danger);
+    padding: 0.3rem 0.8rem;
+}
+
+#activeUsersList .btn-danger {
+    padding: 0.2rem 0.5rem;
+    font-size: 0.7rem;
+}
+
+.no-data {
+    text-align: center;
+    padding: 2rem;
+    color: #94a3b8;
+}
+
+/* Most Active Users Table */
+#mostActiveList .rank-1 {
+    background: #fef3c7;
+    font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .weekly-summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .comparison-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .week-controls {
+        flex-wrap: wrap;
+    }
+    
+    .summary-box {
+        padding: 0.8rem;
+    }
+    
+    .summary-value {
+        font-size: 1rem;
+    }
+}

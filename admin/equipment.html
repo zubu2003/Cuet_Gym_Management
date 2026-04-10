@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipment Management | CUET Gym Assistant</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/equipment.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <nav class="admin-navbar">
+        <div class="logo">
+            <span class="logo-icon">👑</span>
+            <span class="logo-text">CUET<span>GYM</span></span>
+            <span class="admin-badge">ADMIN</span>
+        </div>
+        <div class="nav-right">
+            <span class="admin-name">Admin Panel</span>
+            <button class="logout-btn" id="logoutBtn"><span class="material-icons">logout</span> Logout</button>
+        </div>
+    </nav>
+
+    <aside class="admin-sidebar" id="sidebar">
+        <ul class="sidebar-menu">
+            <li><a href="index.html"><span class="material-icons">dashboard</span> Dashboard</a></li>
+            <li><a href="students.html"><span class="material-icons">people</span> Student Management</a></li>
+            <li><a href="qr-manager.html"><span class="material-icons">qr_code</span> Dynamic QR</a></li>
+            <li><a href="logs.html"><span class="material-icons">history</span> Entry/Exit Logs</a></li>
+            <li><a href="analytics.html"><span class="material-icons">bar_chart</span> Analytics</a></li>
+            <li class="active"><a href="equipment.html"><span class="material-icons">fitness_center</span> Equipment</a></li>
+        </ul>
+    </aside>
+
+    <main class="admin-main">
+        <div class="page-header">
+            <h1>Equipment Management</h1>
+            <button class="add-equipment-btn" id="addEquipmentBtn">
+                <span class="material-icons">add</span> Add New Equipment
+            </button>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="equipment-stats">
+            <div class="stat-chip">
+                <span class="material-icons">fitness_center</span>
+                <div class="stat-info">
+                    <h4 id="totalEquipment">0</h4>
+                    <p>Total Equipment</p>
+                </div>
+            </div>
+            <div class="stat-chip">
+                <span class="material-icons">check_circle</span>
+                <div class="stat-info">
+                    <h4 id="activeEquipment">0</h4>
+                    <p>Active</p>
+                </div>
+            </div>
+            <div class="stat-chip">
+                <span class="material-icons">build</span>
+                <div class="stat-info">
+                    <h4 id="maintenanceEquipment">0</h4>
+                    <p>Under Maintenance</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="equipment-search">
+            <div class="search-input-wrapper">
+                <span class="material-icons">search</span>
+                <input type="text" id="searchEquipment" placeholder="Search equipment by name...">
+            </div>
+            <select id="equipStatusFilter" class="filter-select">
+                <option value="all">All Equipment</option>
+                <option value="active">Active Only</option>
+                <option value="maintenance">Maintenance Only</option>
+            </select>
+        </div>
+
+        <!-- Equipment Grid -->
+        <div class="equipment-grid" id="equipmentGrid">
+            <!-- Equipment cards will be loaded here -->
+        </div>
+    </main>
+
+    <!-- Modern Add/Edit Modal -->
+    <div id="equipmentModal" class="modal">
+        <div class="modal-content modern-modal">
+            <div class="modal-header">
+                <h3 id="equipModalTitle">Add Equipment</h3>
+                <span class="modal-close" id="closeEquipModalBtn">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="equipmentForm">
+                    <input type="hidden" id="equipId">
+                    <div class="form-group-modern">
+                        <label>Equipment Name</label>
+                        <input type="text" id="equipName" placeholder="e.g., Treadmill, Bench Press" required>
+                    </div>
+                    <div class="form-row-modern">
+                        <div class="form-group-modern">
+                            <label>Category</label>
+                            <select id="equipCategory">
+                                <option>Cardio</option>
+                                <option>Strength</option>
+                                <option>Free Weights</option>
+                                <option>Cable</option>
+                            </select>
+                        </div>
+                        <div class="form-group-modern">
+                            <label>Status</label>
+                            <select id="equipStatus">
+                                <option value="active">✅ Active</option>
+                                <option value="maintenance">🔧 Under Maintenance</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group-modern">
+                        <label>YouTube Tutorial URL</label>
+                        <input type="url" id="equipTutorial" placeholder="https://youtube.com/watch?v=...">
+                    </div>
+                    <div class="form-group-modern">
+                        <label>Instructions / How to Use</label>
+                        <textarea id="equipInstructions" rows="3" placeholder="Step by step instructions for using this equipment..."></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-primary" id="saveEquipmentBtn">Save Equipment</button>
+                <button class="btn-danger" id="cancelEquipModalBtn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+    <script src="js/equipment.js"></script>
+</body>
+</html>

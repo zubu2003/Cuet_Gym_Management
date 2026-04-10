@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entry/Exit Logs | CUET Gym Assistant</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/logs.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <nav class="admin-navbar">
+        <div class="logo">
+            <span class="logo-icon">👑</span>
+            <span class="logo-text">CUET<span>GYM</span></span>
+            <span class="admin-badge">ADMIN</span>
+        </div>
+        <div class="nav-right">
+            <span class="admin-name">Admin Panel</span>
+            <button class="logout-btn" id="logoutBtn"><span class="material-icons">logout</span> Logout</button>
+        </div>
+    </nav>
+
+    <aside class="admin-sidebar" id="sidebar">
+        <ul class="sidebar-menu">
+            <li><a href="index.html"><span class="material-icons">dashboard</span> Dashboard</a></li>
+            <li><a href="students.html"><span class="material-icons">people</span> Student Management</a></li>
+            <li><a href="qr-manager.html"><span class="material-icons">qr_code</span> Dynamic QR</a></li>
+            <li class="active"><a href="logs.html"><span class="material-icons">history</span> Entry/Exit Logs</a></li>
+            <li><a href="analytics.html"><span class="material-icons">bar_chart</span> Analytics</a></li>
+            <li><a href="equipment.html"><span class="material-icons">fitness_center</span> Equipment</a></li>
+        </ul>
+    </aside>
+
+    <main class="admin-main">
+        <div class="page-header">
+            <h1>Entry/Exit Logs</h1>
+            <button class="btn-primary" id="exportBtn">
+                <span class="material-icons">download</span> Export CSV
+            </button>
+        </div>
+
+        <div class="card">
+            <div class="search-bar">
+                <input type="text" id="searchLogs" placeholder="Search by student name or ID...">
+                <input type="date" id="dateFilter">
+                <select id="typeFilter">
+                    <option value="all">All Types</option>
+                    <option value="entry">Entry Only</option>
+                    <option value="exit">Exit Only</option>
+                </select>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Date</th><th>Time</th><th>Student ID</th><th>Student Name</th><th>Type</th><th>Duration</th></tr>
+                    </thead>
+                    <tbody id="logsList"></tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/admin.js"></script>
+    <script src="js/logs.js"></script>
+</body>
+</html>

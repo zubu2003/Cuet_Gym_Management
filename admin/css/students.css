@@ -1,0 +1,13 @@
+/* Student Management Specific Styles */
+#studentsList .btn-primary,
+#studentsList .btn-danger,
+#studentsList .btn-success,
+#studentsList .btn-warning {
+    padding: 0.2rem 0.6rem;
+    font-size: 0.7rem;
+    margin: 0 0.2rem;
+}
+
+#studentsList td:last-child {
+    white-space: nowrap;
+}

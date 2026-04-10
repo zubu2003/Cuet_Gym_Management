@@ -3,123 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CUET Gym Assistant</title>
-    <link rel="stylesheet" href="../styles/styles.css">
+    <title>Admin Dashboard | CUET Gym Assistant</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-    <!-- Navbar -->
-    <header class="navbar">
-        <div class="container nav-container">
-            <div class="logo">
-                <a href="index.html" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: white;">
-                    <span class="logo-icon">💪</span>
-                    <span class="logo-text">CUET GYM ASSISTANT</span>
-                </a>
-            </div>
-            <nav class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="#features">Features</a>
-                <a href="#contact">Contact</a>
-                <button class="login-btn" id="loginNavBtn">Login →</button>
-            </nav>
+    <nav class="admin-navbar">
+        <div class="logo">
+            <span class="logo-icon">👑</span>
+            <span class="logo-text">CUET<span>GYM</span></span>
+            <span class="admin-badge">ADMIN</span>
         </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container hero-content">
-            <div class="hero-text">
-                <h1>CUET GYM ASSISTANT</h1>
-                <p>Track workouts, scan QR codes, monitor capacity in real-time.</p>
-                <button class="cta-btn" id="getStartedBtn">Get Started →</button>
-            </div>
-            <div class="hero-image">
-                <img src="../assets/gymgym.png" alt="Gym Illustration" />
-            </div>
+        <div class="nav-right">
+            <span class="admin-name">Admin Panel</span>
+            <button class="logout-btn" id="logoutBtn"><span class="material-icons">logout</span> Logout</button>
         </div>
-    </section>
+    </nav>
 
-    <!-- Features Section -->
-    <section class="features" id="features">
-        <div class="container">
-            <div class="section-header">
-                <span class="badge">Core Features</span>
-                <h2>What We Offer</h2>
-            </div>
-            <div class="features-list">
-                <div class="feature-card">
-                    <div class="feature-icon">🔍</div>
-                    <h3>QR Scanner</h3>
-                    <p>Quick check-in system</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3>Live Status</h3>
-                    <p>Real-time updates</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🏃‍♂️</div>
-                    <h3>Gym Track</h3>
-                    <p>Progress tracking</p>
-                </div>
-            </div>
+    <aside class="admin-sidebar" id="sidebar">
+        <ul class="sidebar-menu">
+            <li class="active"><a href="index.html"><span class="material-icons">dashboard</span> Dashboard</a></li>
+            <li><a href="students.html"><span class="material-icons">people</span> Student Management</a></li>
+            <li><a href="qr-manager.html"><span class="material-icons">qr_code</span> Dynamic QR</a></li>
+            <li><a href="logs.html"><span class="material-icons">history</span> Entry/Exit Logs</a></li>
+            <li><a href="analytics.html"><span class="material-icons">bar_chart</span> Analytics</a></li>
+            <li><a href="equipment.html"><span class="material-icons">fitness_center</span> Equipment</a></li>
+        </ul>
+    </aside>
+
+    <main class="admin-main">
+        <div class="page-header">
+            <h1>Dashboard</h1>
+            <button class="btn-primary" id="refreshBtn">
+                <span class="material-icons">refresh</span> Refresh
+            </button>
         </div>
-    </section>
 
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="container stats-list">
+        <!-- Stats Cards -->
+        <div class="stats-grid">
             <div class="stat-card">
-                <h3>500+</h3>
-                <p>Active Students</p>
+                <div class="stat-icon"><span class="material-icons">people</span></div>
+                <div class="stat-info">
+                    <h3 id="totalStudents">0</h3>
+                    <p>Total Registered Students</p>
+                </div>
             </div>
             <div class="stat-card">
-                <h3>40+</h3>
-                <p>Equipment Units</p>
+                <div class="stat-icon"><span class="material-icons">today</span></div>
+                <div class="stat-info">
+                    <h3 id="todayEntries">0</h3>
+                    <p>Today's Entries</p>
+                </div>
             </div>
             <div class="stat-card">
-                <h3>24/7</h3>
-                <p>Access Available</p>
+                <div class="stat-icon"><span class="material-icons">fitness_center</span></div>
+                <div class="stat-info">
+                    <h3 id="currentlyInside">0</h3>
+                    <p>Currently Inside Gym</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><span class="material-icons">trending_up</span></div>
+                <div class="stat-info">
+                    <h3 id="avgDuration">0</h3>
+                    <p>Avg Session (min)</p>
+                </div>
             </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="footer" id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>CUET Gym Assistant</h4>
-                    <p>Your fitness journey starts here</p>
-                    <div class="social-icons">
-                        <a href="#">📘</a>
-                        <a href="#">📷</a>
-                        <a href="#">🐦</a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="index.html#features">Features</a></li>
-                        <li><a href="index.html#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact Info</h4>
-                    <ul>
-                        <li>📞 +880 1234 567890</li>
-                        <li>✉️ gym@cuet.ac.bd</li>
-                        <li>📍 CUET, Chattogram</li>
-                    </ul>
-                </div>
+        <!-- Weekly Usage List (No Graph) -->
+        <div class="card">
+            <div class="card-header">
+                <h3><span class="material-icons">calendar_view_week</span> Weekly Usage</h3>
+                <select id="weekSelect">
+                    <option value="0">This Week</option>
+                    <option value="1">Last Week</option>
+                </select>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 CUET Gym Assistant. All rights reserved.</p>
+            <div class="weekly-list" id="weeklyList">
+                <!-- Dynamic weekly data will appear here -->
             </div>
         </div>
-    </footer>
 
-    <script src="../scripts/main.js"></script>
+        <!-- Active Users & Most Active -->
+        <div class="stats-grid">
+            <div class="card">
+                <div class="card-header">
+                    <h3><span class="material-icons">people_outline</span> Currently Inside Gym</h3>
+                    <button class="btn-danger btn-small" id="forceCheckoutAllBtn">Force Checkout All</button>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>Student ID</th><th>Name</th><th>Entry Time</th><th>Duration</th><th>Action</th></tr>
+                        </thead>
+                        <tbody id="activeUsersList"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3><span class="material-icons">emoji_events</span> Most Active Users (This Week)</h3>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead><tr><th>Student Name</th><th>Total Visits</th><th>Total Hours</th></tr></thead>
+                        <tbody id="mostActiveList"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="card">
+            <div class="card-header">
+                <h3><span class="material-icons">history</span> Recent Activity</h3>
+                <a href="logs.html" class="btn-primary">View All</a>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead><tr><th>Time</th><th>Student</th><th>Action</th><th>Status</th></tr></thead>
+                    <tbody id="recentActivity"></tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/admin.js"></script>
+    <script src="js/dashboard.js"></script>
 </body>
 </html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | CUET Gym Assistant</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <nav class="admin-navbar">
+        <div class="logo">
+            <span class="logo-icon">👑</span>
+            <span class="logo-text">CUET<span>GYM</span></span>
+            <span class="admin-badge">ADMIN</span>
+        </div>
+        <div class="nav-right">
+            <span class="admin-name">Admin Panel</span>
+            <button class="logout-btn" id="logoutBtn"><span class="material-icons">logout</span> Logout</button>
+        </div>
+    </nav>
+
+    <aside class="admin-sidebar" id="sidebar">
+        <ul class="sidebar-menu">
+            <li class="active"><a href="index.html"><span class="material-icons">dashboard</span> Dashboard</a></li>
+            <li><a href="students.html"><span class="material-icons">people</span> Student Management</a></li>
+            <li><a href="qr-manager.html"><span class="material-icons">qr_code</span> Dynamic QR</a></li>
+            <li><a href="logs.html"><span class="material-icons">history</span> Entry/Exit Logs</a></li>
+            <li><a href="analytics.html"><span class="material-icons">bar_chart</span> Analytics</a></li>
+            <li><a href="equipment.html"><span class="material-icons">fitness_center</span> Equipment</a></li>
+        </ul>
+    </aside>
+
+    <main class="admin-main">
+        <div class="page-header">
+            <h1>Dashboard</h1>
+            <button class="btn-primary" id="refreshBtn">
+                <span class="material-icons">refresh</span> Refresh
+            </button>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon"><span class="material-icons">people</span></div>
+                <div class="stat-info">
+                    <h3 id="totalStudents">0</h3>
+                    <p>Total Registered Students</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><span class="material-icons">today</span></div>
+                <div class="stat-info">
+                    <h3 id="todayEntries">0</h3>
+                    <p>Today's Entries</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><span class="material-icons">fitness_center</span></div>
+                <div class="stat-info">
+                    <h3 id="currentlyInside">0</h3>
+                    <p>Currently Inside Gym</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><span class="material-icons">trending_up</span></div>
+                <div class="stat-info">
+                    <h3 id="avgDuration">0</h3>
+                    <p>Avg Session (min)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weekly Usage Card with Detailed Info -->
+        <div class="card weekly-usage-card">
+            <div class="card-header">
+                <h3><span class="material-icons">calendar_view_week</span> Weekly Usage Report</h3>
+                <div class="week-controls">
+                    <button class="week-nav-btn" id="prevWeekBtn">◀ Previous</button>
+                    <span id="weekRange" class="week-range">Loading...</span>
+                    <button class="week-nav-btn" id="nextWeekBtn">Next ▶</button>
+                </div>
+            </div>
+            
+            <!-- Weekly Summary Stats -->
+            <div class="weekly-summary-grid">
+                <div class="summary-box">
+                    <div class="summary-icon"><span class="material-icons">people_outline</span></div>
+                    <div class="summary-details">
+                        <span class="summary-label">Total Weekly Visits</span>
+                        <span class="summary-value" id="weeklyTotalVisits">0</span>
+                    </div>
+                </div>
+                <div class="summary-box">
+                    <div class="summary-icon"><span class="material-icons">schedule</span></div>
+                    <div class="summary-details">
+                        <span class="summary-label">Average Daily Visits</span>
+                        <span class="summary-value" id="weeklyAvgDaily">0</span>
+                    </div>
+                </div>
+                <div class="summary-box">
+                    <div class="summary-icon"><span class="material-icons">timer</span></div>
+                    <div class="summary-details">
+                        <span class="summary-label">Average Session Duration</span>
+                        <span class="summary-value" id="weeklyAvgDuration">0 min</span>
+                    </div>
+                </div>
+                <div class="summary-box">
+                    <div class="summary-icon"><span class="material-icons">trending_up</span></div>
+                    <div class="summary-details">
+                        <span class="summary-label">Busiest Day</span>
+                        <span class="summary-value" id="weeklyBusiestDay">-</span>
+                    </div>
+                </div>
+                <div class="summary-box">
+                    <div class="summary-icon"><span class="material-icons">trending_down</span></div>
+                    <div class="summary-details">
+                        <span class="summary-label">Quietest Day</span>
+                        <span class="summary-value" id="weeklyQuietestDay">-</span>
+                    </div>
+                </div>
+                <div class="summary-box">
+                    <div class="summary-icon"><span class="material-icons">people</span></div>
+                    <div class="summary-details">
+                        <span class="summary-label">Unique Visitors</span>
+                        <span class="summary-value" id="weeklyUniqueVisitors">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Daily Breakdown Table -->
+            <div class="daily-breakdown">
+                <h4>Daily Breakdown</h4>
+                <div class="table-container">
+                    <table class="data-table" id="weeklyTable">
+                        <thead>
+                            <tr>
+                                <th>Day</th>
+                                <th>Date</th>
+                                <th>Entries</th>
+                                <th>Exits</th>
+                                <th>Avg Duration</th>
+                                <th>Peak Hour</th>
+                                <th>Trend</th>
+                            </tr>
+                        </thead>
+                        <tbody id="weeklyTableBody">
+                            <tr><td colspan="7" style="text-align:center">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Comparison with Previous Week -->
+            <div class="comparison-section">
+                <h4>Comparison with Previous Week</h4>
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <span class="comparison-label">Total Visits</span>
+                        <span class="comparison-value" id="compareVisits">0%</span>
+                        <span class="comparison-trend" id="compareVisitsTrend"></span>
+                    </div>
+                    <div class="comparison-card">
+                        <span class="comparison-label">Average Duration</span>
+                        <span class="comparison-value" id="compareDuration">0%</span>
+                        <span class="comparison-trend" id="compareDurationTrend"></span>
+                    </div>
+                    <div class="comparison-card">
+                        <span class="comparison-label">Unique Visitors</span>
+                        <span class="comparison-value" id="compareUnique">0%</span>
+                        <span class="comparison-trend" id="compareUniqueTrend"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Active Users & Most Active -->
+        <div class="stats-grid">
+            <div class="card">
+                <div class="card-header">
+                    <h3><span class="material-icons">people_outline</span> Currently Inside Gym</h3>
+                    <button class="btn-danger btn-small" id="forceCheckoutAllBtn">Force Checkout All</button>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>Student ID</th><th>Name</th><th>Entry Time</th><th>Duration</th><th>Action</th></tr>
+                        </thead>
+                        <tbody id="activeUsersList"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3><span class="material-icons">emoji_events</span> Most Active Users (This Week)</h3>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead><tr><th>Rank</th><th>Student Name</th><th>Student ID</th><th>Total Visits</th><th>Total Hours</th></tr></thead>
+                        <tbody id="mostActiveList"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="card">
+            <div class="card-header">
+                <h3><span class="material-icons">history</span> Recent Activity</h3>
+                <a href="logs.html" class="btn-primary">View All</a>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead><tr><th>Time</th><th>Student</th><th>Action</th><th>Status</th></tr></thead>
+                    <tbody id="recentActivity"></tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/admin.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics | CUET Gym Assistant</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/analytics.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <nav class="admin-navbar">
+        <div class="logo">
+            <span class="logo-icon">👑</span>
+            <span class="logo-text">CUET<span>GYM</span></span>
+            <span class="admin-badge">ADMIN</span>
+        </div>
+        <div class="nav-right">
+            <span class="admin-name">Admin Panel</span>
+            <button class="logout-btn" id="logoutBtn"><span class="material-icons">logout</span> Logout</button>
+        </div>
+    </nav>
+
+    <aside class="admin-sidebar" id="sidebar">
+        <ul class="sidebar-menu">
+            <li><a href="index.html"><span class="material-icons">dashboard</span> Dashboard</a></li>
+            <li><a href="students.html"><span class="material-icons">people</span> Student Management</a></li>
+            <li><a href="qr-manager.html"><span class="material-icons">qr_code</span> Dynamic QR</a></li>
+            <li><a href="logs.html"><span class="material-icons">history</span> Entry/Exit Logs</a></li>
+            <li class="active"><a href="analytics.html"><span class="material-icons">bar_chart</span> Analytics</a></li>
+            <li><a href="equipment.html"><span class="material-icons">fitness_center</span> Equipment</a></li>
+        </ul>
+    </aside>
+
+    <main class="admin-main">
+        <div class="page-header">
+            <h1>Usage Analytics</h1>
+            <div class="date-range">
+                <select id="periodSelect">
+                    <option value="today">Today</option>
+                    <option value="week" selected>This Week</option>
+                    <option value="month">This Month</option>
+                    <option value="all">All Time</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Summary Stats Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon"><span class="material-icons">people</span></div>
+                <div class="stat-info">
+                    <h3 id="totalVisits">0</h3>
+                    <p>Total Gym Visits</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><span class="material-icons">schedule</span></div>
+                <div class="stat-info">
+                    <h3 id="avgDuration">0</h3>
+                    <p>Avg Session (min)</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><span class="material-icons">trending_up</span></div>
+                <div class="stat-info">
+                    <h3 id="peakHour">0</h3>
+                    <p>Peak Hour</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><span class="material-icons">today</span></div>
+                <div class="stat-info">
+                    <h3 id="busiestDay">0</h3>
+                    <p>Busiest Day</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Peak Hours List (Card Style) -->
+        <div class="card">
+            <div class="card-header">
+                <h3><span class="material-icons">access_time</span> Peak Hours Distribution</h3>
+            </div>
+            <div class="peak-hours-grid" id="peakHoursList">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+
+        <!-- Daily Attendance List -->
+        <div class="card">
+            <div class="card-header">
+                <h3><span class="material-icons">calendar_today</span> Daily Attendance</h3>
+            </div>
+            <div class="daily-list" id="dailyList">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+
+        <!-- Most Active Students -->
+        <div class="card">
+            <div class="card-header">
+                <h3><span class="material-icons">emoji_events</span> Most Active Students</h3>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Rank</th><th>Student Name</th><th>Student ID</th><th>Total Visits</th><th>Total Hours</th></tr>
+                    </thead>
+                    <tbody id="activeStudentsList"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Popular Equipment List -->
+        <div class="card">
+            <div class="card-header">
+                <h3><span class="material-icons">fitness_center</span> Most Used Equipment</h3>
+            </div>
+            <div class="equipment-list" id="equipmentList">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+    </main>
+
+    <script src="js/admin.js"></script>
+    <script src="js/analytics.js"></script>
+</body>
+</html>

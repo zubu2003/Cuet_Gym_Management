@@ -1,0 +1,9 @@
+/* Logs Specific Styles */
+#searchLogs {
+    flex: 2;
+}
+
+#dateFilter, #typeFilter {
+    width: auto;
+    min-width: 120px;
+}

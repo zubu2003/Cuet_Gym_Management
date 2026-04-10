@@ -1,0 +1,121 @@
+/* QR Manager Specific Styles */
+.qr-single-card {
+    background: linear-gradient(135deg, #ffffff, #f8fafc);
+}
+
+.qr-badge {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.7rem;
+}
+
+.qr-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.qr-box {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    border: 2px solid #e2e8f0;
+}
+
+.qr-code {
+    width: 250px;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qr-info {
+    flex: 1;
+    min-width: 250px;
+}
+
+.qr-timer-box, .qr-status-box, .qr-instruction-box {
+    background: #f1f5f9;
+    padding: 0.8rem 1rem;
+    border-radius: 12px;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.qr-timer-box .material-icons,
+.qr-status-box .material-icons {
+    color: #1e3c72;
+}
+
+.qr-instruction-box p {
+    margin: 0.3rem 0;
+    font-size: 0.85rem;
+    color: #475569;
+}
+
+.qr-instruction-box p:first-child {
+    margin-top: 0;
+}
+
+#qrTimer {
+    font-size: 1.3rem;
+    color: #1e3c72;
+}
+
+.settings-row {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+
+.settings-row .form-group {
+    flex: 1;
+    min-width: 200px;
+}
+
+.scan-count {
+    font-size: 0.8rem;
+    color: #64748b;
+}
+
+.text-muted {
+    color: #64748b;
+    font-size: 0.8rem;
+    margin-top: 0.8rem;
+}
+
+#scanLogs .status-ok {
+    color: #22c55e;
+    font-weight: 500;
+}
+
+#scanLogs .status-warning {
+    color: #f59e0b;
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .qr-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .qr-timer-box, .qr-status-box, .qr-instruction-box {
+        justify-content: center;
+    }
+    
+    .qr-code {
+        width: 200px;
+        height: 200px;
+    }
+}

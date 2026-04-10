@@ -1,0 +1,129 @@
+/* Analytics Specific Styles */
+.date-range {
+    display: flex;
+    gap: 0.5rem;
+}
+
+#periodSelect {
+    padding: 0.4rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--white);
+    font-size: 0.9rem;
+}
+
+/* Peak Hours Grid */
+.peak-hours-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 0.8rem;
+}
+
+.peak-hour-card {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    padding: 0.8rem;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.peak-hour-card .hour {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.peak-hour-card .count {
+    font-size: 0.8rem;
+    opacity: 0.9;
+}
+
+/* Daily List */
+.daily-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.daily-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    background: #f8fafc;
+    border-radius: 12px;
+    border-left: 3px solid #1e3c72;
+}
+
+.daily-date {
+    font-weight: 600;
+    color: #1e3c72;
+}
+
+.daily-count {
+    background: #e2e8f0;
+    padding: 0.2rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* Equipment List */
+.equipment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.equipment-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    background: #f8fafc;
+    border-radius: 12px;
+}
+
+.equipment-name {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.equipment-name .material-icons {
+    color: #1e3c72;
+}
+
+.equipment-usage {
+    background: #1e3c72;
+    color: white;
+    padding: 0.2rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+/* Most Active Students Table */
+#activeStudentsList .rank-1 {
+    background: #fef3c7;
+    font-weight: bold;
+}
+
+#activeStudentsList .rank-2 {
+    background: #f1f5f9;
+}
+
+#activeStudentsList .rank-3 {
+    background: #f8fafc;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .peak-hours-grid {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    }
+    
+    .daily-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.3rem;
+    }
+}

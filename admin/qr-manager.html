@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic QR Manager | CUET Gym Assistant</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/qr-manager.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+    <nav class="admin-navbar">
+        <div class="logo">
+            <span class="logo-icon">👑</span>
+            <span class="logo-text">CUET<span>GYM</span></span>
+            <span class="admin-badge">ADMIN</span>
+        </div>
+        <div class="nav-right">
+            <span class="admin-name">Admin Panel</span>
+            <button class="logout-btn" id="logoutBtn"><span class="material-icons">logout</span> Logout</button>
+        </div>
+    </nav>
+
+    <aside class="admin-sidebar" id="sidebar">
+        <ul class="sidebar-menu">
+            <li><a href="index.html"><span class="material-icons">dashboard</span> Dashboard</a></li>
+            <li><a href="students.html"><span class="material-icons">people</span> Student Management</a></li>
+            <li class="active"><a href="qr-manager.html"><span class="material-icons">qr_code</span> Dynamic QR</a></li>
+            <li><a href="logs.html"><span class="material-icons">history</span> Entry/Exit Logs</a></li>
+            <li><a href="analytics.html"><span class="material-icons">bar_chart</span> Analytics</a></li>
+            <li><a href="equipment.html"><span class="material-icons">fitness_center</span> Equipment</a></li>
+        </ul>
+    </aside>
+
+    <main class="admin-main">
+        <div class="page-header">
+            <h1>Dynamic QR Code Manager</h1>
+            <button class="btn-primary" id="regenerateBtn">
+                <span class="material-icons">refresh</span> Regenerate QR
+            </button>
+        </div>
+
+        <!-- Single QR Card -->
+        <div class="card qr-single-card">
+            <div class="card-header">
+                <h3>Gym Access QR Code</h3>
+                <span class="qr-badge">Single QR - First Scan = Check IN | Second Scan = Check OUT</span>
+            </div>
+            <div class="qr-container">
+                <div class="qr-box">
+                    <div id="dynamicQR" class="qr-code"></div>
+                </div>
+                <div class="qr-info">
+                    <div class="qr-timer-box">
+                        <span class="material-icons">schedule</span>
+                        <span>QR Valid For: <strong id="qrTimer">30</strong> seconds</span>
+                    </div>
+                    <div class="qr-status-box">
+                        <span class="material-icons">info</span>
+                        <span>Status: <span id="qrStatus" class="status-ok">Active</span></span>
+                    </div>
+                    <div class="qr-instruction-box">
+                        <p>📱 Students scan this QR code at the gym entrance</p>
+                        <p>🟢 First Scan → Check IN (Entry recorded)</p>
+                        <p>🔴 Second Scan → Check OUT (Exit recorded)</p>
+                        <p>⏰ QR changes every <strong id="intervalDisplay">30</strong> seconds to prevent misuse</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- QR Settings Card -->
+        <div class="card">
+            <div class="card-header">
+                <h3>QR Settings</h3>
+            </div>
+            <div class="settings-row">
+                <div class="form-group">
+                    <label>QR Refresh Interval (seconds)</label>
+                    <input type="number" id="refreshInterval" min="10" max="60" value="30">
+                </div>
+                <button class="btn-primary" id="applySettingsBtn">Apply Settings</button>
+            </div>
+            <p class="text-muted">⏰ QR code changes every X seconds to prevent screenshot misuse</p>
+        </div>
+
+        <!-- Recent Scans Card -->
+        <div class="card">
+            <div class="card-header">
+                <h3>Recent QR Scans</h3>
+                <span class="scan-count" id="scanCount">0 scans today</span>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Time</th><th>Student Name</th><th>Student ID</th><th>Action</th><th>Status</th></tr>
+                    </thead>
+                    <tbody id="scanLogs"></tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/admin.js"></script>
+    <script src="js/qr-manager.js"></script>
+</body>
+</html>
