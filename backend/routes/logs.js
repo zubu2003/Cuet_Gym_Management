@@ -3,6 +3,13 @@ const router = express.Router();
 const Log = require('../models/Log');
 const ActiveSession = require('../models/ActiveSession');
 
+function getLocalDateString(date = new Date()) {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, '0');
+  const d = String(date.getDate()).padStart(2, '0');
+  return `${y}-${m}-${d}`;
+}
+
 // Get all logs (with filters)
 router.get('/', async (req, res) => {
   const { search, date, type } = req.query;
@@ -18,7 +25,7 @@ router.get('/', async (req, res) => {
 router.post('/entry', async (req, res) => {
   const { studentId, studentName } = req.body;
   const now = new Date();
-  const date = now.toISOString().split('T')[0];
+  const date = getLocalDateString(now);
   const time = now.toLocaleTimeString();
   const hour = now.getHours();
 
@@ -38,7 +45,7 @@ router.post('/entry', async (req, res) => {
 router.post('/exit', async (req, res) => {
   const { studentId, studentName } = req.body;
   const now = new Date();
-  const date = now.toISOString().split('T')[0];
+  const date = getLocalDateString(now);
   const time = now.toLocaleTimeString();
 
   const active = await ActiveSession.findOne({ studentId });
@@ -67,7 +74,7 @@ router.delete('/active/:studentId', async (req, res) => {
     studentId: session.studentId,
     studentName: session.studentName,
     type: 'exit',
-    date: now.toISOString().split('T')[0],
+    date: getLocalDateString(now),
     time: now.toLocaleTimeString(),
     duration: Math.floor((now.getTime() - session.timestamp) / 60000),
     forced: true

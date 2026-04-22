@@ -33,12 +33,26 @@
                     <span class="material-icons">schedule</span>
                     <span>Schedule</span>
                 </a>
-                <button class="nav-icon-btn">
-                    <span class="material-icons">notifications</span>
-                </button>
-                <button class="nav-icon-btn">
-                    <span class="material-icons">account_circle</span>
-                </button>
+                
+                <!-- Profile Dropdown -->
+                <div class="profile-dropdown">
+                    <button class="profile-btn" id="profileBtn">
+                        <span class="material-icons">account_circle</span>
+                        <span class="profile-name" id="profileName">Student</span>
+                        <span class="material-icons dropdown-icon">arrow_drop_down</span>
+                    </button>
+                    <div class="dropdown-menu" id="dropdownMenu">
+                        <a href="settings.html" class="dropdown-item">
+                            <span class="material-icons">settings</span>
+                            Settings
+                        </a>
+                        <hr class="dropdown-divider">
+                        <button id="logoutBtn" class="dropdown-item logout-item">
+                            <span class="material-icons">logout</span>
+                            Logout
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
@@ -130,22 +144,22 @@
             <section class="card stats-summary">
                 <div class="summary-item">
                     <span class="material-icons">event</span>
-                    <div class="summary-number">5</div>
+                    <div class="summary-number" id="daysAttended">0</div>
                     <div class="summary-label">Days Attended</div>
                 </div>
                 <div class="summary-item">
                     <span class="material-icons">timer</span>
-                    <div class="summary-number">12h 30m</div>
+                    <div class="summary-number" id="totalTime">0m</div>
                     <div class="summary-label">Total Hours</div>
                 </div>
                 <div class="summary-item">
                     <span class="material-icons">fitness_center</span>
-                    <div class="summary-number">8</div>
+                    <div class="summary-number" id="totalWorkouts">0</div>
                     <div class="summary-label">Workouts</div>
                 </div>
                 <div class="summary-item">
                     <span class="material-icons">local_fire_department</span>
-                    <div class="summary-number">2,450</div>
+                    <div class="summary-number" id="totalCalories">0</div>
                     <div class="summary-label">Calories Burned</div>
                 </div>
             </section>
@@ -158,37 +172,9 @@
                     <div class="equipment-item">
                         <div class="equipment-info">
                             <span class="material-icons">fitness_center</span>
-                            <span>Treadmill</span>
+                            <span>Loading...</span>
                         </div>
-                        <span class="equipment-count">12 times</span>
-                    </div>
-                    <div class="equipment-item">
-                        <div class="equipment-info">
-                            <span class="material-icons">fitness_center</span>
-                            <span>Dumbbells</span>
-                        </div>
-                        <span class="equipment-count">8 times</span>
-                    </div>
-                    <div class="equipment-item">
-                        <div class="equipment-info">
-                            <span class="material-icons">fitness_center</span>
-                            <span>Bench Press</span>
-                        </div>
-                        <span class="equipment-count">6 times</span>
-                    </div>
-                    <div class="equipment-item">
-                        <div class="equipment-info">
-                            <span class="material-icons">fitness_center</span>
-                            <span>Leg Press</span>
-                        </div>
-                        <span class="equipment-count">5 times</span>
-                    </div>
-                    <div class="equipment-item">
-                        <div class="equipment-info">
-                            <span class="material-icons">fitness_center</span>
-                            <span>Pull-up Bar</span>
-                        </div>
-                        <span class="equipment-count">4 times</span>
+                        <span class="equipment-count">--</span>
                     </div>
                 </div>
             </section>
@@ -251,6 +237,7 @@
         </main>
     </div>
 
+    <script src="../scripts/navbar.js"></script>
     <script src="../scripts/stats.js"></script>
 </body>
 </html>

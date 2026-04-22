@@ -33,12 +33,26 @@
                     <span class="material-icons">schedule</span>
                     <span>Schedule</span>
                 </a>
-                <button class="nav-icon-btn">
-                    <span class="material-icons">notifications</span>
-                </button>
-                <button class="nav-icon-btn">
-                    <span class="material-icons">account_circle</span>
-                </button>
+                
+                <!-- Profile Dropdown -->
+                <div class="profile-dropdown">
+                    <button class="profile-btn" id="profileBtn">
+                        <span class="material-icons">account_circle</span>
+                        <span class="profile-name" id="profileName">Student</span>
+                        <span class="material-icons dropdown-icon">arrow_drop_down</span>
+                    </button>
+                    <div class="dropdown-menu" id="dropdownMenu">
+                        <a href="settings.html" class="dropdown-item">
+                            <span class="material-icons">settings</span>
+                            Settings
+                        </a>
+                        <hr class="dropdown-divider">
+                        <button id="logoutBtn" class="dropdown-item logout-item">
+                            <span class="material-icons">logout</span>
+                            Logout
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
@@ -97,10 +111,10 @@
                 <h4>Gym Status</h4>
                 <div class="gym-status-box">
                     <div class="gym-status-main">
-                        <span class="gym-status-count">21 / 40</span>
+                        <span class="gym-status-count" id="gymStatusCount">-- / --</span>
                     </div>
                     <div class="gym-status-label">Currently Inside</div>
-                    <div class="gym-status-state status-ok">✅ Not Crowded</div>
+                    <div class="gym-status-state status-ok" id="gymStatusState">Loading...</div>
                 </div>
             </div>
         </aside>
@@ -135,75 +149,17 @@
                 </div>
             </section>
 
-            <!-- Equipment Grid -->
+            <!-- Equipment Grid - EMPTY (no static data) -->
             <section class="card tutorial-select">
                 <h4>Choose Equipment</h4>
                 <div class="equipment-grid" id="equipmentGrid">
-                    <div class="equipment-card" data-category="cardio">
-                        <span class="material-icons">directions_run</span>
-                        <span class="equipment-name">Treadmill</span>
-                        <span class="equipment-desc">Running & walking machine</span>
-                        <button class="watch-btn">Watch Tutorial →</button>
-                    </div>
-                    <div class="equipment-card" data-category="cardio">
-                        <span class="material-icons">pedal_bike</span>
-                        <span class="equipment-name">Exercise Bike</span>
-                        <span class="equipment-desc">Stationary cycling</span>
-                        <button class="watch-btn">Watch Tutorial →</button>
-                    </div>
-                    <div class="equipment-card" data-category="cardio">
-                        <span class="material-icons">fitness_center</span>
-                        <span class="equipment-name">Elliptical</span>
-                        <span class="equipment-desc">Full body cardio</span>
-                        <button class="watch-btn">Watch Tutorial →</button>
-                    </div>
-                    <div class="equipment-card" data-category="strength">
-                        <span class="material-icons">fitness_center</span>
-                        <span class="equipment-name">Bench Press</span>
-                        <span class="equipment-desc">Chest workout machine</span>
-                        <button class="watch-btn">Watch Tutorial →</button>
-                    </div>
-                    <div class="equipment-card" data-category="strength">
-                        <span class="material-icons">fitness_center</span>
-                        <span class="equipment-name">Leg Press</span>
-                        <span class="equipment-desc">Leg strengthening</span>
-                        <button class="watch-btn">Watch Tutorial →</button>
-                    </div>
-                    <div class="equipment-card" data-category="free-weights">
-                        <span class="material-icons">fitness_center</span>
-                        <span class="equipment-name">Dumbbells</span>
-                        <span class="equipment-desc">Free weight training</span>
-                        <button class="watch-btn">Watch Tutorial →</button>
-                    </div>
-                    <div class="equipment-card" data-category="free-weights">
-                        <span class="material-icons">fitness_center</span>
-                        <span class="equipment-name">Barbell</span>
-                        <span class="equipment-desc">Olympic weight lifting</span>
-                        <button class="watch-btn">Watch Tutorial →</button>
-                    </div>
-                    <div class="equipment-card" data-category="cable">
-                        <span class="material-icons">fitness_center</span>
-                        <span class="equipment-name">Cable Crossover</span>
-                        <span class="equipment-desc">Cable machine workouts</span>
-                        <button class="watch-btn">Watch Tutorial →</button>
-                    </div>
-                    <div class="equipment-card" data-category="strength">
-                        <span class="material-icons">fitness_center</span>
-                        <span class="equipment-name">Pull-up Bar</span>
-                        <span class="equipment-desc">Back & arm workout</span>
-                        <button class="watch-btn">Watch Tutorial →</button>
-                    </div>
-                    <div class="equipment-card" data-category="cardio">
-                        <span class="material-icons">directions_run</span>
-                        <span class="equipment-name">Rowing Machine</span>
-                        <span class="equipment-desc">Full body cardio</span>
-                        <button class="watch-btn">Watch Tutorial →</button>
-                    </div>
+                    <div class="loading">Loading equipment...</div>
                 </div>
             </section>
         </main>
     </div>
 
+    <script src="../scripts/navbar.js"></script>
     <script src="../scripts/tutorial.js"></script>
 </body>
 </html>

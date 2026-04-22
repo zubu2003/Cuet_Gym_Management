@@ -35,12 +35,26 @@
                     <span class="material-icons">schedule</span>
                     <span>Schedule</span>
                 </a>
-                <button class="nav-icon-btn">
-                    <span class="material-icons">notifications</span>
-                </button>
-                <button class="nav-icon-btn">
-                    <span class="material-icons">account_circle</span>
-                </button>
+                
+                <!-- Profile Dropdown -->
+                <div class="profile-dropdown">
+                    <button class="profile-btn" id="profileBtn">
+                        <span class="material-icons">account_circle</span>
+                        <span class="profile-name" id="profileName">Student</span>
+                        <span class="material-icons dropdown-icon">arrow_drop_down</span>
+                    </button>
+                    <div class="dropdown-menu" id="dropdownMenu">
+                        <a href="settings.html" class="dropdown-item">
+                            <span class="material-icons">settings</span>
+                            Settings
+                        </a>
+                        <hr class="dropdown-divider">
+                        <button id="logoutBtn" class="dropdown-item logout-item">
+                            <span class="material-icons">logout</span>
+                            Logout
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
@@ -166,6 +180,7 @@
         </main>
     </div>
 
+    <script src="../scripts/navbar.js"></script>
     <script src="../scripts/qr.js"></script>
 </body>
 </html>

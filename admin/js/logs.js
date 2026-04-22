@@ -31,7 +31,7 @@ function renderLogs(logs) {
     tbody.innerHTML = '<tr><td colspan="6" style="text-align:center">No logs found</td></tr>';
     return;
   }
-  tbody.innerHTML = logs.slice().reverse().map(l => `
+  tbody.innerHTML = logs.map(l => `
     <tr>
       <td>${l.date}</td>
       <td>${l.time}</td>
@@ -45,7 +45,14 @@ function renderLogs(logs) {
 
 async function exportLogs() {
   try {
-    const logs = await apiFetch('/logs');
+    const search = document.getElementById('searchLogs')?.value || '';
+    const date = document.getElementById('dateFilter')?.value || '';
+    const type = document.getElementById('typeFilter')?.value || 'all';
+    const params = new URLSearchParams();
+    if (search) params.set('search', search);
+    if (date) params.set('date', date);
+    if (type && type !== 'all') params.set('type', type);
+    const logs = await apiFetch(`/logs?${params.toString()}`);
     const csvRows = [['Date', 'Time', 'Student ID', 'Student Name', 'Type', 'Duration']];
     logs.forEach(l => {
       csvRows.push([l.date, l.time, l.studentId, l.studentName, l.type === 'entry' ? 'Check In' : 'Check Out', l.duration || '']);

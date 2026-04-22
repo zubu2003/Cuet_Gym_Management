@@ -4,7 +4,7 @@ const router = express.Router();
 const Workout = require('../models/Workout');
 
 router.get('/:studentId', async (req, res) => {
-  const workouts = await Workout.find({ studentId: req.params.studentId }).sort({ timestamp: -1 });
+  const workouts = await Workout.find({ studentId: req.params.studentId }).sort({ date: -1 });
   res.json(workouts);
 });
 

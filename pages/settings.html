@@ -33,12 +33,26 @@
                     <span class="material-icons">schedule</span>
                     <span>Schedule</span>
                 </a>
-                <button class="nav-icon-btn">
-                    <span class="material-icons">notifications</span>
-                </button>
-                <button class="nav-icon-btn">
-                    <span class="material-icons">account_circle</span>
-                </button>
+                
+                <!-- Profile Dropdown -->
+                <div class="profile-dropdown">
+                    <button class="profile-btn" id="profileBtn">
+                        <span class="material-icons">account_circle</span>
+                        <span class="profile-name" id="profileName">Student</span>
+                        <span class="material-icons dropdown-icon">arrow_drop_down</span>
+                    </button>
+                    <div class="dropdown-menu" id="dropdownMenu">
+                        <a href="settings.html" class="dropdown-item">
+                            <span class="material-icons">settings</span>
+                            Settings
+                        </a>
+                        <hr class="dropdown-divider">
+                        <button id="logoutBtn" class="dropdown-item logout-item">
+                            <span class="material-icons">logout</span>
+                            Logout
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
@@ -62,10 +76,10 @@
                 <h4>Gym Status</h4>
                 <div class="gym-status-box">
                     <div class="gym-status-main">
-                        <span class="gym-status-count">21 / 40</span>
+                        <span class="gym-status-count">-- / --</span>
                     </div>
                     <div class="gym-status-label">Currently Inside</div>
-                    <div class="gym-status-state status-ok">✅ Not Crowded</div>
+                    <div class="gym-status-state status-ok">Loading...</div>
                 </div>
             </div>
         </aside>
@@ -76,10 +90,10 @@
             <section class="card settings-profile">
                 <div class="profile-avatar"><span class="material-icons">account_circle</span></div>
                 <div class="profile-info">
-                    <strong>Sazid Ahmed</strong><br>
-                    Student ID: 2021XXXX<br>
-                    Department: CSE<br>
-                    Email: sazid@cuet.ac.bd
+                    <strong>Loading...</strong><br>
+                    Student ID: ---<br>
+                    Department: ---<br>
+                    Email: ---
                 </div>
                 <button class="profile-edit-btn" id="editProfileBtn">
                     <span class="material-icons">edit</span>
@@ -187,19 +201,27 @@
             <form id="profileForm">
                 <div class="form-group">
                     <label>Full Name</label>
-                    <input type="text" id="fullName" value="Sazid Ahmed" required>
+                    <input type="text" id="fullName" required>
                 </div>
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="email" id="profileEmail" value="sazid@cuet.ac.bd" required>
+                    <input type="email" id="profileEmail" required>
                 </div>
                 <div class="form-group">
                     <label>Student ID</label>
-                    <input type="text" id="studentId" value="2021XXXX" required>
+                    <input type="text" id="studentId" required readonly>
                 </div>
                 <div class="form-group">
                     <label>Department</label>
-                    <input type="text" id="department" value="CSE" required>
+                    <select id="department" required>
+                        <option>CSE</option>
+                        <option>EEE</option>
+                        <option>ME</option>
+                        <option>CE</option>
+                        <option>ECE</option>
+                        <option>IPE</option>
+                        <option>URP</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label>Phone Number</label>
@@ -359,6 +381,7 @@
         </div>
     </div>
 
+    <script src="../scripts/navbar.js"></script>
     <script src="../scripts/settings.js"></script>
 </body>
 </html>

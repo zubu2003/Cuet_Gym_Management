@@ -80,35 +80,38 @@
 
         <!-- Equipment Grid -->
         <div class="equipment-grid" id="equipmentGrid">
-            <!-- Equipment cards will be loaded here -->
+            <div class="loading">Loading equipment...</div>
         </div>
     </main>
 
-    <!-- Modern Add/Edit Modal -->
+    <!-- ADD/EDIT EQUIPMENT MODAL -->
     <div id="equipmentModal" class="modal">
-        <div class="modal-content modern-modal">
+        <div class="modal-content">
             <div class="modal-header">
-                <h3 id="equipModalTitle">Add Equipment</h3>
-                <span class="modal-close" id="closeEquipModalBtn">&times;</span>
+                <h3 id="modalTitle">Add New Equipment</h3>
+                <span class="modal-close" id="closeModalBtn">&times;</span>
             </div>
             <div class="modal-body">
                 <form id="equipmentForm">
                     <input type="hidden" id="equipId">
-                    <div class="form-group-modern">
-                        <label>Equipment Name</label>
+                    
+                    <div class="form-group">
+                        <label>Equipment Name *</label>
                         <input type="text" id="equipName" placeholder="e.g., Treadmill, Bench Press" required>
                     </div>
-                    <div class="form-row-modern">
-                        <div class="form-group-modern">
-                            <label>Category</label>
-                            <select id="equipCategory">
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Category *</label>
+                            <select id="equipCategory" required>
+                                <option value="">Select Category</option>
                                 <option>Cardio</option>
                                 <option>Strength</option>
                                 <option>Free Weights</option>
                                 <option>Cable</option>
                             </select>
                         </div>
-                        <div class="form-group-modern">
+                        <div class="form-group">
                             <label>Status</label>
                             <select id="equipStatus">
                                 <option value="active">✅ Active</option>
@@ -116,19 +119,25 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group-modern">
+                    
+                    <div class="form-group">
                         <label>YouTube Tutorial URL</label>
-                        <input type="url" id="equipTutorial" placeholder="https://youtube.com/watch?v=...">
+                        <div class="input-with-icon">
+                            <span class="input-icon">▶️</span>
+                            <input type="url" id="equipTutorial" placeholder="https://youtube.com/watch?v=...">
+                        </div>
+                        <small>Paste the YouTube video link for this equipment</small>
                     </div>
-                    <div class="form-group-modern">
+                    
+                    <div class="form-group">
                         <label>Instructions / How to Use</label>
                         <textarea id="equipInstructions" rows="3" placeholder="Step by step instructions for using this equipment..."></textarea>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button class="btn-primary" id="saveEquipmentBtn">Save Equipment</button>
-                <button class="btn-danger" id="cancelEquipModalBtn">Cancel</button>
+                <button type="button" class="btn-primary" id="saveEquipmentBtn">💾 Save Equipment</button>
+                <button type="button" class="btn-danger" id="cancelModalBtn">Cancel</button>
             </div>
         </div>
     </div>

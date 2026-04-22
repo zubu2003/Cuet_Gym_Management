@@ -148,6 +148,65 @@ async function toggleSuspend(studentId, newStatus) {
 function closeModal() { document.getElementById('studentModal').style.display = 'none'; }
 function closeViewModal() { document.getElementById('viewModal').style.display = 'none'; }
 
+async function importStudentsFromCSV(file) {
+  const text = await file.text();
+  const lines = text.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+  if (lines.length < 2) {
+    alert('CSV file is empty or invalid');
+    return;
+  }
+
+  const rows = lines.slice(1); // skip header
+  let success = 0;
+  let failed = 0;
+
+  for (const row of rows) {
+    const parts = row.split(',').map(v => v.trim());
+    if (parts.length < 4) {
+      failed++;
+      continue;
+    }
+
+    const [studentId, name, department, email, phone = ''] = parts;
+    if (!studentId || !name || !department || !email) {
+      failed++;
+      continue;
+    }
+
+    try {
+      await apiFetch('/students', {
+        method: 'POST',
+        body: JSON.stringify({
+          studentId,
+          name,
+          department,
+          email,
+          phone,
+          status: 'active'
+        })
+      });
+      success++;
+    } catch (err) {
+      failed++;
+    }
+  }
+
+  alert(`Import complete. Success: ${success}, Failed: ${failed}`);
+  loadStudents();
+}
+
+function handleImportCSV() {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.csv';
+  input.onchange = async (event) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    await importStudentsFromCSV(file);
+  };
+  input.click();
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   loadStudents();
   document.getElementById('addStudentBtn')?.addEventListener('click', openAddStudentModal);
@@ -157,6 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('closeViewModalBtn')?.addEventListener('click', closeViewModal);
   document.getElementById('searchInput')?.addEventListener('keyup', filterStudents);
   document.getElementById('statusFilter')?.addEventListener('change', filterStudents);
+  document.getElementById('importCSVBtn')?.addEventListener('click', handleImportCSV);
   window.viewStudent = viewStudent;
   window.editStudent = editStudent;
   window.toggleSuspend = toggleSuspend;
