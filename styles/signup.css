@@ -15,6 +15,26 @@ body {
     overflow: hidden;
 }
 
+.form-group select {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f8fafc;
+    cursor: pointer;
+}
+
+.form-group select:focus {
+    outline: none;
+    border-color: #2a5298;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.1);
+}
+
 /* Decorative circles */
 body::before {
     content: '';
