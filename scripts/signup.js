@@ -1,5 +1,5 @@
 // Signup page JS
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = 'https://gymmanagementbackend.vercel.app/api';
 
 document.getElementById('signupForm')?.addEventListener('submit', async (e) => {
   e.preventDefault();

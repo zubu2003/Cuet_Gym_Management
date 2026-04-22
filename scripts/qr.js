@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = 'https://gymmanagementbackend.vercel.app/api';
 const token = localStorage.getItem('token');
 const currentStudentId = localStorage.getItem('studentId');
 const currentStudentName = localStorage.getItem('studentName') || 'Student';

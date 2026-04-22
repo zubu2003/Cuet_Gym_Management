@@ -1,0 +1,77 @@
+{
+  "version": 2,
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/pages/index.html"
+    },
+    {
+      "src": "/login",
+      "dest": "/pages/login.html"
+    },
+    {
+      "src": "/signup",
+      "dest": "/pages/signup.html"
+    },
+    {
+      "src": "/dashboard",
+      "dest": "/pages/dashboard.html"
+    },
+    {
+      "src": "/stats",
+      "dest": "/pages/stats.html"
+    },
+    {
+      "src": "/workout",
+      "dest": "/pages/workout.html"
+    },
+    {
+      "src": "/tutorial",
+      "dest": "/pages/tutorial.html"
+    },
+    {
+      "src": "/qr",
+      "dest": "/pages/qr.html"
+    },
+    {
+      "src": "/schedule",
+      "dest": "/pages/schedule.html"
+    },
+    {
+      "src": "/settings",
+      "dest": "/pages/settings.html"
+    },
+    {
+      "src": "/admin",
+      "dest": "/admin/index.html"
+    },
+    {
+      "src": "/admin/(.*)",
+      "dest": "/admin/$1"
+    },
+    {
+      "src": "/styles/(.*)",
+      "dest": "/styles/$1"
+    },
+    {
+      "src": "/scripts/(.*)",
+      "dest": "/scripts/$1"
+    },
+    {
+      "src": "/admin/css/(.*)",
+      "dest": "/admin/css/$1"
+    },
+    {
+      "src": "/admin/js/(.*)",
+      "dest": "/admin/js/$1"
+    },
+    {
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/pages/$1"
+    }
+  ]
+}

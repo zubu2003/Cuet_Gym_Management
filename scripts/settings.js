@@ -1,11 +1,10 @@
 // Settings page JS - Connected to Backend API
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = 'https://gymmanagementbackend.vercel.app/api';
 
-// Get current user from localStorage (set after login)
+// Get current user from localStorage
 let token = localStorage.getItem('token');
 let currentStudentId = localStorage.getItem('studentId');
 let currentStudentName = localStorage.getItem('studentName');
-let currentUserEmail = localStorage.getItem('userEmail');
 
 // Check if user is logged in
 function checkAuth() {
@@ -47,70 +46,44 @@ async function loadUserProfile() {
     if (!checkAuth()) return;
     
     try {
-        console.log('Fetching student data for ID:', currentStudentId);
-        
-        // Fetch student data from database using studentId
         const student = await apiFetch(`/students/${currentStudentId}`);
         
-        console.log('Student data received:', student);
-        
-        // Update profile display in settings page
         const profileInfo = document.querySelector('.profile-info');
         if (profileInfo) {
             profileInfo.innerHTML = `
-                <strong>${student.name || currentStudentName || 'Student'}</strong><br>
+                <strong>${student.name || currentStudentName}</strong><br>
                 Student ID: ${student.studentId || currentStudentId}<br>
                 Department: ${student.department || 'Not set'}<br>
                 Email: ${student.email || 'Not set'}
             `;
         }
         
-        // Also update the profile name in navbar if exists
         const profileNameSpan = document.getElementById('profileName');
         if (profileNameSpan) {
             profileNameSpan.textContent = student.name?.split(' ')[0] || currentStudentName?.split(' ')[0] || 'Student';
         }
         
-        // Store in variable for editing
         window.userData = {
             name: student.name || currentStudentName,
-            email: student.email || '',
+            email: student.email,
             studentId: student.studentId || currentStudentId,
             department: student.department || 'CSE',
             phone: student.phone || ''
         };
         
-        // Also update localStorage with latest email
-        if (student.email) {
-            localStorage.setItem('userEmail', student.email);
-        }
-        
     } catch (err) {
-        console.error('Error loading profile from API:', err);
-        
-        // Fallback to localStorage if API fails
-        const fallbackData = {
+        console.error('Error loading profile:', err);
+        window.userData = {
             name: currentStudentName || 'Student',
-            email: currentUserEmail || localStorage.getItem('userEmail') || 'student@cuet.ac.bd',
+            email: localStorage.getItem('userEmail') || 'student@cuet.ac.bd',
             studentId: currentStudentId,
             department: 'CSE',
             phone: ''
         };
-        window.userData = fallbackData;
-        
-        const profileInfo = document.querySelector('.profile-info');
-        if (profileInfo) {
-            profileInfo.innerHTML = `
-                <strong>${fallbackData.name}</strong><br>
-                Student ID: ${fallbackData.studentId}<br>
-                Department: ${fallbackData.department}<br>
-                Email: ${fallbackData.email}
-            `;
-        }
     }
 }
 
-// Load gym status for sidebar
+// Load gym status
 async function loadGymStatus() {
     try {
         const activeSessions = await apiFetch('/logs/active');
@@ -135,10 +108,6 @@ async function loadGymStatus() {
         }
     } catch (err) {
         console.error('Error loading gym status:', err);
-        const statusStateElem = document.querySelector('.gym-status-state');
-        if (statusStateElem) {
-            statusStateElem.innerHTML = '⚠️ Status unavailable';
-        }
     }
 }
 
@@ -150,13 +119,53 @@ function logout() {
     }
 }
 
-// Update Profile in Database
+// Delete Account Function
+async function deleteAccount() {
+    const password = document.getElementById('deletePassword').value;
+    const confirmText = document.getElementById('deleteConfirmText').value;
+    
+    if (confirmText !== 'DELETE') {
+        alert('Please type DELETE to confirm account deletion');
+        return;
+    }
+    
+    if (!password) {
+        alert('Please enter your password');
+        return;
+    }
+    
+    if (!confirm('Are you absolutely sure? This action cannot be undone!')) {
+        return;
+    }
+    
+    try {
+        const response = await fetch(`${API_BASE}/students/account/${currentStudentId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ password })
+        });
+        
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.error || 'Delete failed');
+        }
+        
+        alert('Your account has been permanently deleted.');
+        localStorage.clear();
+        window.location.href = 'login.html';
+        
+    } catch (err) {
+        alert('Delete failed: ' + err.message);
+    }
+}
+
+// Update Profile
 async function updateProfile(profileData) {
     try {
-        console.log('Updating profile with data:', profileData);
-        
-        // Update student record in database
-        const updatedStudent = await apiFetch(`/students/${currentStudentId}`, {
+        await apiFetch(`/students/${currentStudentId}`, {
             method: 'PUT',
             body: JSON.stringify({
                 name: profileData.name,
@@ -166,16 +175,9 @@ async function updateProfile(profileData) {
             })
         });
         
-        console.log('Update response:', updatedStudent);
-        
-        // Update localStorage
         localStorage.setItem('studentName', profileData.name);
-        if (profileData.email) {
-            localStorage.setItem('userEmail', profileData.email);
-        }
         window.userData = profileData;
         
-        // Update profile display
         const profileInfo = document.querySelector('.profile-info');
         if (profileInfo) {
             profileInfo.innerHTML = `
@@ -186,15 +188,8 @@ async function updateProfile(profileData) {
             `;
         }
         
-        // Update navbar name
-        const profileNameSpan = document.getElementById('profileName');
-        if (profileNameSpan) {
-            profileNameSpan.textContent = profileData.name?.split(' ')[0] || 'Student';
-        }
-        
         return true;
     } catch (err) {
-        console.error('Error updating profile:', err);
         alert('Failed to update profile: ' + err.message);
         return false;
     }
@@ -242,21 +237,17 @@ function savePrivacySettings() {
 // Load profile data into edit form
 function loadProfileDataForEdit() {
     const userData = window.userData || {};
-    const fullNameInput = document.getElementById('fullName');
-    const emailInput = document.getElementById('profileEmail');
-    const studentIdInput = document.getElementById('studentId');
-    const departmentSelect = document.getElementById('department');
-    const phoneInput = document.getElementById('phone');
-    
-    if (fullNameInput) fullNameInput.value = userData.name || '';
-    if (emailInput) emailInput.value = userData.email || '';
-    if (studentIdInput) studentIdInput.value = userData.studentId || '';
-    if (departmentSelect) departmentSelect.value = userData.department || 'CSE';
-    if (phoneInput) phoneInput.value = userData.phone || '';
+    document.getElementById('fullName').value = userData.name || '';
+    document.getElementById('profileEmail').value = userData.email || '';
+    document.getElementById('studentId').value = userData.studentId || '';
+    document.getElementById('department').value = userData.department || 'CSE';
+    document.getElementById('phone').value = userData.phone || '';
 }
 
 // DOM Elements
 const editProfileBtn = document.getElementById('editProfileBtn');
+const sidebarToggle = document.getElementById('sidebar-toggle');
+const sidebar = document.querySelector('.sidebar');
 
 // Modals
 const passwordModal = document.getElementById('passwordModal');
@@ -266,6 +257,7 @@ const aboutModal = document.getElementById('aboutModal');
 const helpModal = document.getElementById('helpModal');
 const termsModal = document.getElementById('termsModal');
 const privacyModal = document.getElementById('privacyModal');
+const deleteAccountModal = document.getElementById('deleteAccountModal');
 
 // Close all modals function
 function closeAllModals() {
@@ -311,6 +303,9 @@ document.querySelectorAll('.settings-item').forEach(item => {
                 break;
             case 'logout':
                 logout();
+                break;
+            case 'delete-account':
+                openModal(deleteAccountModal);
                 break;
         }
     });
@@ -373,6 +368,31 @@ if (savePrivacy) {
     });
 }
 
+// Delete Account Modal Buttons
+const confirmDeleteAccountBtn = document.getElementById('confirmDeleteAccountBtn');
+const cancelDeleteAccountBtn = document.getElementById('cancelDeleteAccountBtn');
+const closeDeleteModalBtn = document.getElementById('closeDeleteModalBtn');
+
+if (confirmDeleteAccountBtn) {
+    confirmDeleteAccountBtn.addEventListener('click', deleteAccount);
+}
+
+if (cancelDeleteAccountBtn) {
+    cancelDeleteAccountBtn.addEventListener('click', () => {
+        closeAllModals();
+        document.getElementById('deletePassword').value = '';
+        document.getElementById('deleteConfirmText').value = '';
+    });
+}
+
+if (closeDeleteModalBtn) {
+    closeDeleteModalBtn.addEventListener('click', () => {
+        closeAllModals();
+        document.getElementById('deletePassword').value = '';
+        document.getElementById('deleteConfirmText').value = '';
+    });
+}
+
 // Cancel buttons for modals
 document.querySelectorAll('.cancel-modal-btn, .modal-close').forEach(btn => {
     btn.addEventListener('click', closeAllModals);
@@ -390,6 +410,46 @@ if (editProfileBtn) {
     editProfileBtn.addEventListener('click', function() {
         loadProfileDataForEdit();
         openModal(profileModal);
+    });
+}
+
+// Profile Dropdown
+function setupProfileDropdown() {
+    const profileBtn = document.getElementById('profileBtn');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+    const logoutDropdownBtn = document.getElementById('logoutBtn');
+    
+    if (profileBtn) {
+        profileBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdownMenu.classList.toggle('show');
+        });
+    }
+    
+    document.addEventListener('click', () => {
+        dropdownMenu.classList.remove('show');
+    });
+    
+    if (logoutDropdownBtn) {
+        logoutDropdownBtn.addEventListener('click', logout);
+    }
+}
+
+// Sidebar toggle
+function setupSidebar() {
+    if (sidebarToggle) {
+        sidebarToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            sidebar.classList.toggle('open');
+        });
+    }
+    
+    document.addEventListener('click', function(event) {
+        if (sidebar && sidebar.classList.contains('open')) {
+            if (!sidebar.contains(event.target) && event.target !== sidebarToggle) {
+                sidebar.classList.remove('open');
+            }
+        }
     });
 }
 
@@ -416,5 +476,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     checkAuth();
     await loadUserProfile();
     await loadGymStatus();
+    setupProfileDropdown();
+    setupSidebar();
     loadSavedPreferences();
 });

@@ -1,5 +1,5 @@
 // Workout Tracker - Uses logged-in student from localStorage
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = 'https://gymmanagementbackend.vercel.app/api';
 
 // Get current student from localStorage (set after login)
 let currentStudentId = localStorage.getItem('studentId');
