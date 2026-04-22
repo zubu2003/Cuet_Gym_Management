@@ -1,5 +1,5 @@
 // Login page JS
-const API_BASE = 'https://gymmanagementbackend.vercel.app/api';
+const API_BASE = 'https://gymmanagementbackend.vercel.app//api';
 
 document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
     e.preventDefault();

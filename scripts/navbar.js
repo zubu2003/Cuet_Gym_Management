@@ -1,6 +1,6 @@
 // Shared navbar behavior for all user pages
 (function initSharedNavbar() {
-    const API_BASE = 'https://gymmanagementbackend.vercel.app/api';
+    const API_BASE = 'https://gymmanagementbackend.vercel.app//api';
 
     function getProfileDisplayName() {
         const rawName =

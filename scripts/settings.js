@@ -1,5 +1,5 @@
 // Settings page JS - Connected to Backend API
-const API_BASE = 'https://gymmanagementbackend.vercel.app/api';
+const API_BASE = 'https://gymmanagementbackend.vercel.app//api';
 
 // Get current user from localStorage
 let token = localStorage.getItem('token');
