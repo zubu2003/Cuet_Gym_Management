@@ -1,12 +1,27 @@
 const mongoose = require('mongoose');
 
+let cachedConnectionPromise = null;
+
 const connectDB = async () => {
+  if (cachedConnectionPromise) {
+    return cachedConnectionPromise;
+  }
+
+  if (!process.env.MONGODB_URI) {
+    throw new Error('MONGODB_URI is not set');
+  }
+
   try {
-    await mongoose.connect(process.env.MONGODB_URI);
-    console.log('✅ MongoDB Connected');
+    cachedConnectionPromise = mongoose.connect(process.env.MONGODB_URI, {
+      bufferCommands: false
+    });
+    await cachedConnectionPromise;
+    console.log('MongoDB connected');
+    return cachedConnectionPromise;
   } catch (err) {
-    console.error('❌ DB Error:', err.message);
-    process.exit(1);
+    cachedConnectionPromise = null;
+    console.error('DB Error:', err.message);
+    throw err;
   }
 };
 

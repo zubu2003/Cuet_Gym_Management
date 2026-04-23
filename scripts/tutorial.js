@@ -1,5 +1,5 @@
 // Tutorial page – fetches active equipment from backend
-const API_BASE = 'https://gymmanagementbackend.vercel.app//api';
+const API_BASE = 'http://localhost:5000/api';
 let token = localStorage.getItem('token');
 
 // Check if user is logged in

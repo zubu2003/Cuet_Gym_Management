@@ -7,7 +7,9 @@ const cors = require('cors');
 const connectDB = require('./config/database');
 
 const app = express();
-connectDB();
+connectDB().catch((error) => {
+  console.error('Initial DB connection failed:', error.message);
+});
 
 app.use(cors({
   origin: '*',
@@ -15,6 +17,10 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.use(express.json());
+
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'OK' });
+});
 
 // Routes - MAKE SURE these are all correct
 app.use('/api/students', require('./routes/students'));
@@ -25,7 +31,9 @@ app.use('/api/analytics', require('./routes/analytics'));
 app.use('/api/qr', require('./routes/qr'));
 app.use('/api/auth', require('./routes/auth'));
 
-app.get('/api/health', (req, res) => res.json({ status: 'OK' }));
+module.exports = app;
 
-const PORT = process.env.PORT || 5001;
-app.listen(PORT, () => console.log(`🚀 Server on http://localhost:${PORT}`));
+if (process.env.VERCEL !== '1') {
+  const PORT = process.env.PORT || 5001;
+  app.listen(PORT, () => console.log(`Server on http://localhost:${PORT}`));
+}

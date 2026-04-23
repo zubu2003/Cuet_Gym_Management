@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Optional: Fetch and display live gym status (capacity)
   async function fetchGymStatus() {
     try {
-      const response = await fetch('https://gymmanagementbackend.vercel.app//api/logs/active');
+      const response = await fetch('http://localhost:5000/api/logs/active');
       const activeUsers = await response.json();
       const capacityElem = document.querySelector('.gym-capacity');
       if (capacityElem) {
