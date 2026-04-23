@@ -30,6 +30,7 @@ app.use('/api/workout', require('./routes/workout'));
 app.use('/api/analytics', require('./routes/analytics'));
 app.use('/api/qr', require('./routes/qr'));
 app.use('/api/auth', require('./routes/auth'));
+app.use('/api', require('./routes/auth'));
 
 module.exports = app;
 

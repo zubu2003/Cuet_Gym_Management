@@ -1,5 +1,5 @@
 // Admin Shared Functions – with Authentication Token Support
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = window.location.hostname === 'localhost' ? 'http://localhost:5001/api' : '/api';
 
 // Helper function for all API calls (automatically adds token)
 async function apiFetch(endpoint, options = {}) {

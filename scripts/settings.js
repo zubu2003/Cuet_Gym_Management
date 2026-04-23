@@ -1,5 +1,5 @@
 // Settings page JS - Connected to Backend API
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = window.location.hostname === 'localhost' ? 'http://localhost:5001/api' : '/api';
 
 // Get current user from localStorage
 let token = localStorage.getItem('token');

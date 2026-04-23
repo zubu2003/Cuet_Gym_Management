@@ -1,5 +1,5 @@
 // Tutorial page – fetches active equipment from backend
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = window.location.hostname === 'localhost' ? 'http://localhost:5001/api' : '/api';
 let token = localStorage.getItem('token');
 
 // Check if user is logged in

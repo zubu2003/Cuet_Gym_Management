@@ -1,6 +1,6 @@
 // Shared navbar behavior for all user pages
 (function initSharedNavbar() {
-    const API_BASE = 'http://localhost:5000/api';
+    const API_BASE = window.location.hostname === 'localhost' ? 'http://localhost:5001/api' : '/api';
 
     function getProfileDisplayName() {
         const rawName =

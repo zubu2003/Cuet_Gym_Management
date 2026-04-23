@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = window.location.hostname === 'localhost' ? 'http://localhost:5001/api' : '/api';
 const token = localStorage.getItem('token');
 const currentStudentId = localStorage.getItem('studentId');
 const currentStudentName = localStorage.getItem('studentName') || 'Student';

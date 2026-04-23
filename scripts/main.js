@@ -1,5 +1,6 @@
 // main.js – Homepage (index.html)
 document.addEventListener('DOMContentLoaded', function() {
+  const API_BASE = window.location.hostname === 'localhost' ? 'http://localhost:5001/api' : '/api';
   // Redirect to login page when Get Started button is clicked
   const getStartedBtn = document.getElementById('getStartedBtn');
   if (getStartedBtn) {
@@ -34,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Optional: Fetch and display live gym status (capacity)
   async function fetchGymStatus() {
     try {
-      const response = await fetch('http://localhost:5000/api/logs/active');
+      const response = await fetch(`${API_BASE}/logs/active`);
       const activeUsers = await response.json();
       const capacityElem = document.querySelector('.gym-capacity');
       if (capacityElem) {
