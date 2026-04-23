@@ -3,7 +3,8 @@ const token = localStorage.getItem('token');
 const currentStudentId = localStorage.getItem('studentId');
 const currentStudentName = localStorage.getItem('studentName') || 'Student';
 
-let scanner = null;
+let html5QrCode = null;
+let isScannerRunning = false;
 let isProcessingScan = false;
 let lastScannedContent = '';
 let lastScanTime = 0;
@@ -59,7 +60,7 @@ function updateStatusDisplay(isInside) {
       <span class="material-icons">info</span>
       <span>Not checked in</span>
     `;
-    statusDisplay.className = 'status-display';
+    statusDisplay.className = 'status-display status-out';
   }
 }
 
@@ -86,6 +87,28 @@ async function refreshCurrentStatus() {
     const active = await apiFetch('/logs/active');
     const isInside = active.some(s => s.studentId === currentStudentId);
     updateStatusDisplay(isInside);
+
+    const maxCapacity = 40;
+    const currentCount = active.length;
+    const percent = (currentCount / maxCapacity) * 100;
+    const gymCapacityEl = document.getElementById('gymCapacityCount');
+    const gymCrowdStatusEl = document.getElementById('gymCrowdStatus');
+
+    if (gymCapacityEl) {
+      gymCapacityEl.textContent = `${currentCount} / ${maxCapacity}`;
+    }
+    if (gymCrowdStatusEl) {
+      if (percent < 70) {
+        gymCrowdStatusEl.textContent = '✅ Not Crowded';
+        gymCrowdStatusEl.className = 'gym-status-state status-ok';
+      } else if (percent < 90) {
+        gymCrowdStatusEl.textContent = '⚠️ Getting Crowded';
+        gymCrowdStatusEl.className = 'gym-status-state status-warning';
+      } else {
+        gymCrowdStatusEl.textContent = '🔴 Very Crowded';
+        gymCrowdStatusEl.className = 'gym-status-state status-danger';
+      }
+    }
   } catch (error) {
     console.error('Failed to refresh status:', error);
   }
@@ -117,28 +140,21 @@ async function processScannedCode(content) {
 
   isProcessingScan = true;
   try {
-    await apiFetch('/qr/validate', {
+    const scanResult = await apiFetch('/qr/scan', {
       method: 'POST',
-      body: JSON.stringify({ qrCode: content })
+      body: JSON.stringify({
+        qrCode: content,
+        studentId: currentStudentId,
+        studentName: currentStudentName
+      })
     });
 
-    // First try check-in, if already inside fallback to checkout
-    try {
-      await apiFetch('/logs/entry', {
-        method: 'POST',
-        body: JSON.stringify({ studentId: currentStudentId, studentName: currentStudentName })
-      });
-      showResult('✅ Checked IN successfully!', 'success');
-    } catch (entryErr) {
-      await apiFetch('/logs/exit', {
-        method: 'POST',
-        body: JSON.stringify({ studentId: currentStudentId, studentName: currentStudentName })
-      });
-      showResult('✅ Checked OUT successfully!', 'success');
-    }
+    const actionText = scanResult.action === 'entry' ? 'IN' : 'OUT';
+    showResult(`✅ Checked ${actionText} successfully!`, 'success');
 
     await refreshCurrentStatus();
     await refreshTodayActivity();
+    await stopScanner();
   } catch (err) {
     showResult(`❌ ${err.message}`, 'error');
   } finally {
@@ -147,54 +163,114 @@ async function processScannedCode(content) {
 }
 
 async function startScanner() {
-  const preview = document.getElementById('preview');
+  const modal = document.getElementById('scannerModal');
   const startBtn = document.getElementById('startScanBtn');
   const stopBtn = document.getElementById('stopScanBtn');
+  const qrReaderId = 'qrReader';
 
-  if (!preview || !window.Instascan) {
+  if (!window.Html5Qrcode) {
     showResult('❌ QR scanner library not loaded', 'error');
     return;
   }
 
+  if (isScannerRunning) return;
+
+  if (modal) {
+    modal.classList.remove('hidden');
+  }
+
+  if (!html5QrCode) {
+    html5QrCode = new Html5Qrcode(qrReaderId);
+  }
+
+  const config = {
+    fps: 10,
+    qrbox: { width: 240, height: 240 },
+    aspectRatio: 1.0
+  };
+
   try {
-    scanner = new Instascan.Scanner({ video: preview, mirror: false });
-    scanner.addListener('scan', processScannedCode);
+    await html5QrCode.start(
+      { facingMode: 'environment' },
+      config,
+      (decodedText) => {
+        processScannedCode(decodedText);
+      },
+      () => {}
+    );
 
-    const cameras = await Instascan.Camera.getCameras();
-    if (!cameras.length) {
-      showResult('❌ No camera found on this device', 'error');
-      return;
-    }
-
-    await scanner.start(cameras[0]);
-    showResult('📷 Camera started. Scan QR now.', 'success');
+    isScannerRunning = true;
+    showResult('📷 Camera opened. Scan QR now.', 'success');
     if (startBtn) startBtn.disabled = true;
     if (stopBtn) stopBtn.disabled = false;
   } catch (error) {
-    showResult(`❌ Unable to start camera: ${error.message}`, 'error');
+    try {
+      await html5QrCode.start(
+        { facingMode: 'user' },
+        config,
+        (decodedText) => {
+          processScannedCode(decodedText);
+        },
+        () => {}
+      );
+      isScannerRunning = true;
+      showResult('📷 Camera opened. Scan QR now.', 'success');
+      if (startBtn) startBtn.disabled = true;
+      if (stopBtn) stopBtn.disabled = false;
+    } catch (secondError) {
+      showResult(`❌ Unable to start camera: ${secondError.message}`, 'error');
+      if (modal) modal.classList.add('hidden');
+    }
   }
 }
 
-function stopScanner() {
+async function stopScanner() {
+  const modal = document.getElementById('scannerModal');
   const startBtn = document.getElementById('startScanBtn');
   const stopBtn = document.getElementById('stopScanBtn');
 
-  if (scanner) {
-    scanner.stop();
-    scanner = null;
+  try {
+    if (html5QrCode && isScannerRunning) {
+      await html5QrCode.stop();
+      await html5QrCode.clear();
+    }
+  } catch (error) {
+    console.error('Failed stopping scanner:', error);
+  } finally {
+    isScannerRunning = false;
+    if (modal) modal.classList.add('hidden');
+    if (startBtn) startBtn.disabled = false;
+    if (stopBtn) stopBtn.disabled = true;
   }
-
-  if (startBtn) startBtn.disabled = false;
-  if (stopBtn) stopBtn.disabled = true;
-  showResult('Camera stopped.', 'info');
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
   if (!checkAuth()) return;
 
-  document.getElementById('startScanBtn')?.addEventListener('click', startScanner);
-  document.getElementById('stopScanBtn')?.addEventListener('click', stopScanner);
+  document.getElementById('startScanBtn')?.addEventListener('click', () => {
+    startScanner();
+  });
+  document.getElementById('stopScanBtn')?.addEventListener('click', () => {
+    stopScanner();
+    showResult('Camera closed.', 'info');
+  });
+  document.getElementById('closeScannerBtn')?.addEventListener('click', () => {
+    stopScanner();
+    showResult('Camera closed.', 'info');
+  });
+  document.getElementById('scannerModal')?.addEventListener('click', (event) => {
+    if (event.target.id === 'scannerModal') {
+      stopScanner();
+      showResult('Camera closed.', 'info');
+    }
+  });
 
   await refreshCurrentStatus();
   await refreshTodayActivity();
+});
+
+window.addEventListener('beforeunload', () => {
+  if (html5QrCode && isScannerRunning) {
+    html5QrCode.stop().catch(() => {});
+  }
 });

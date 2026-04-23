@@ -46,18 +46,6 @@
     max-width: 550px;
 }
 
-/* Scanner Video */
-.scanner-video {
-    width: 100%;
-    max-width: 450px;
-    height: 300px;
-    border: 2px solid #1e3c72;
-    border-radius: 16px;
-    background: #1a1a2e;
-    display: none;
-    object-fit: cover;
-}
-
 /* Scanner Controls */
 .scanner-controls {
     display: flex;
@@ -112,10 +100,22 @@
     display: none;
 }
 
+.scan-result.success,
+.scan-result.error,
+.scan-result.info {
+    display: block;
+}
+
 .scan-result.error {
     background: #fef2f2;
     border-left-color: #ef4444;
     color: #991b1b;
+}
+
+.scan-result.info {
+    background: #eff6ff;
+    border-left-color: #2563eb;
+    color: #1e3a8a;
 }
 
 /* Current Status */
@@ -142,21 +142,21 @@
     font-weight: 500;
 }
 
-.status-display.inside {
+.status-display.status-in {
     background: #dcfce7;
     color: #166534;
 }
 
-.status-display.inside .material-icons {
+.status-display.status-in .material-icons {
     color: #22c55e;
 }
 
-.status-display.outside {
+.status-display.status-out {
     background: #fee2e2;
     color: #991b1b;
 }
 
-.status-display.outside .material-icons {
+.status-display.status-out .material-icons {
     color: #ef4444;
 }
 
@@ -261,10 +261,6 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-    .scanner-video {
-        height: 250px;
-    }
-    
     .scanner-controls {
         flex-direction: column;
         width: 100%;
@@ -288,4 +284,62 @@
     .status-display {
         justify-content: center;
     }
+}
+
+/* Camera popup modal */
+.scanner-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(2, 6, 23, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1200;
+    padding: 1rem;
+}
+
+.scanner-modal.hidden {
+    display: none;
+}
+
+.scanner-modal-content {
+    width: 100%;
+    max-width: 460px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.25);
+    padding: 1rem;
+}
+
+.scanner-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+}
+
+.scanner-modal-header h4 {
+    margin: 0;
+    color: #1e3c72;
+}
+
+.scanner-close-btn {
+    border: none;
+    background: transparent;
+    color: #334155;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+}
+
+.qr-reader {
+    width: 100%;
+    min-height: 280px;
+}
+
+.scanner-tip {
+    margin: 0.75rem 0 0;
+    color: #475569;
+    text-align: center;
+    font-size: 0.85rem;
 }

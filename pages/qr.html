@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="../styles/dashboard.css">
     <link rel="stylesheet" href="../styles/qr.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Instascan for QR scanning -->
-    <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
 </head>
 <body>
     <!-- Top Navbar -->
@@ -113,10 +112,10 @@
                 <h4>Gym Status</h4>
                 <div class="gym-status-box">
                     <div class="gym-status-main">
-                        <span class="gym-status-count">21 / 40</span>
+                        <span id="gymCapacityCount" class="gym-status-count">-- / 40</span>
                     </div>
                     <div class="gym-status-label">Currently Inside</div>
-                    <div class="gym-status-state status-ok">✅ Not Crowded</div>
+                    <div id="gymCrowdStatus" class="gym-status-state status-ok">Loading...</div>
                 </div>
             </div>
         </aside>
@@ -135,11 +134,9 @@
             <!-- Scanner Card -->
             <section class="card qr-scanner">
                 <div class="scanner-container">
-                    <video id="preview" class="scanner-video"></video>
-                    
                     <div class="scanner-controls">
                         <button id="startScanBtn" class="scan-btn start-btn">
-                            <span class="material-icons">cameraswitch</span> Start Camera
+                            <span class="material-icons">cameraswitch</span> Open Scanner
                         </button>
                         <button id="stopScanBtn" class="scan-btn stop-btn" disabled>
                             <span class="material-icons">stop</span> Stop Camera
@@ -178,6 +175,19 @@
                 </ul>
             </section>
         </main>
+    </div>
+
+    <div id="scannerModal" class="scanner-modal hidden">
+        <div class="scanner-modal-content">
+            <div class="scanner-modal-header">
+                <h4>Scan Dynamic Gym QR</h4>
+                <button id="closeScannerBtn" class="scanner-close-btn" aria-label="Close scanner">
+                    <span class="material-icons">close</span>
+                </button>
+            </div>
+            <div id="qrReader" class="qr-reader"></div>
+            <p class="scanner-tip">Point your camera to admin generated QR code.</p>
+        </div>
     </div>
 
     <script src="../scripts/navbar.js"></script>

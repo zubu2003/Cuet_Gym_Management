@@ -1,6 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const QRCode = require('../models/QRCode');
+const Log = require('../models/Log');
+const ActiveSession = require('../models/ActiveSession');
+const Student = require('../models/Student');
+
+function getLocalDateString(date = new Date()) {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, '0');
+  const d = String(date.getDate()).padStart(2, '0');
+  return `${y}-${m}-${d}`;
+}
 
 // Generate new QR (admin)
 router.post('/generate', async (req, res) => {
@@ -27,6 +37,82 @@ router.post('/validate', async (req, res) => {
   const valid = await QRCode.findOne({ code: qrCode, expiresAt: { $gt: new Date() } });
   if (!valid) return res.status(400).json({ valid: false, error: 'Invalid or expired QR' });
   res.json({ valid: true });
+});
+
+// Scan + toggle entry/exit (user scanning)
+router.post('/scan', async (req, res) => {
+  try {
+    const { qrCode, studentId, studentName } = req.body;
+
+    if (!qrCode || !studentId) {
+      return res.status(400).json({ error: 'qrCode and studentId are required' });
+    }
+
+    const valid = await QRCode.findOne({ code: qrCode, expiresAt: { $gt: new Date() } });
+    if (!valid) {
+      return res.status(400).json({ valid: false, error: 'Invalid or expired QR' });
+    }
+
+    const now = new Date();
+    const date = getLocalDateString(now);
+    const time = now.toLocaleTimeString();
+    const hour = now.getHours();
+
+    const student = await Student.findOne({ studentId }).select('name');
+    const resolvedStudentName = studentName || student?.name || 'Student';
+
+    const active = await ActiveSession.findOne({ studentId });
+
+    if (!active) {
+      const entryLog = new Log({
+        studentId,
+        studentName: resolvedStudentName,
+        type: 'entry',
+        date,
+        time,
+        hour
+      });
+      await entryLog.save();
+
+      const activeSession = new ActiveSession({
+        studentId,
+        studentName: resolvedStudentName,
+        entryTime: time,
+        timestamp: now.getTime()
+      });
+      await activeSession.save();
+
+      const currentlyInside = await ActiveSession.countDocuments();
+      return res.json({
+        success: true,
+        action: 'entry',
+        message: 'Checked IN successfully',
+        currentlyInside
+      });
+    }
+
+    const duration = Math.floor((now.getTime() - active.timestamp) / 60000);
+    const exitLog = new Log({
+      studentId,
+      studentName: active.studentName || resolvedStudentName,
+      type: 'exit',
+      date,
+      time,
+      duration
+    });
+    await exitLog.save();
+    await ActiveSession.findOneAndDelete({ studentId });
+
+    const currentlyInside = await ActiveSession.countDocuments();
+    return res.json({
+      success: true,
+      action: 'exit',
+      message: 'Checked OUT successfully',
+      currentlyInside
+    });
+  } catch (error) {
+    return res.status(500).json({ error: error.message || 'Scan failed' });
+  }
 });
 
 module.exports = router;
