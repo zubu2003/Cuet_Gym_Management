@@ -4,19 +4,13 @@ const Student = require('../models/Student');
 const Log = require('../models/Log');
 const ActiveSession = require('../models/ActiveSession');
 const Workout = require('../models/Workout');
-
-function getLocalDateString(date = new Date()) {
-  const y = date.getFullYear();
-  const m = String(date.getMonth() + 1).padStart(2, '0');
-  const d = String(date.getDate()).padStart(2, '0');
-  return `${y}-${m}-${d}`;
-}
+const { getDhakaDateString } = require('../utils/dhakaTime');
 
 // Dashboard stats (cards on admin dashboard)
 router.get('/dashboard', async (req, res) => {
   try {
     const totalStudents = await Student.countDocuments();
-    const today = getLocalDateString(new Date());
+    const today = getDhakaDateString(new Date());
     const todayEntries = await Log.countDocuments({ date: today, type: 'entry' });
     const activeSessions = await ActiveSession.find();
     const exits = await Log.find({ type: 'exit', duration: { $ne: null } });

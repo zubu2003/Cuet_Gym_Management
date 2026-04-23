@@ -4,13 +4,7 @@ const QRCode = require('../models/QRCode');
 const Log = require('../models/Log');
 const ActiveSession = require('../models/ActiveSession');
 const Student = require('../models/Student');
-
-function getLocalDateString(date = new Date()) {
-  const y = date.getFullYear();
-  const m = String(date.getMonth() + 1).padStart(2, '0');
-  const d = String(date.getDate()).padStart(2, '0');
-  return `${y}-${m}-${d}`;
-}
+const { getDhakaDateTimeParts } = require('../utils/dhakaTime');
 
 // Generate new QR (admin)
 router.post('/generate', async (req, res) => {
@@ -54,9 +48,7 @@ router.post('/scan', async (req, res) => {
     }
 
     const now = new Date();
-    const date = getLocalDateString(now);
-    const time = now.toLocaleTimeString();
-    const hour = now.getHours();
+    const { date, time, hour } = getDhakaDateTimeParts(now);
 
     const student = await Student.findOne({ studentId }).select('name');
     const resolvedStudentName = studentName || student?.name || 'Student';

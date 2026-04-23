@@ -2,13 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Log = require('../models/Log');
 const ActiveSession = require('../models/ActiveSession');
-
-function getLocalDateString(date = new Date()) {
-  const y = date.getFullYear();
-  const m = String(date.getMonth() + 1).padStart(2, '0');
-  const d = String(date.getDate()).padStart(2, '0');
-  return `${y}-${m}-${d}`;
-}
+const { getDhakaDateTimeParts } = require('../utils/dhakaTime');
 
 // Get all logs (with filters)
 router.get('/', async (req, res) => {
@@ -25,9 +19,7 @@ router.get('/', async (req, res) => {
 router.post('/entry', async (req, res) => {
   const { studentId, studentName } = req.body;
   const now = new Date();
-  const date = getLocalDateString(now);
-  const time = now.toLocaleTimeString();
-  const hour = now.getHours();
+  const { date, time, hour } = getDhakaDateTimeParts(now);
 
   const existing = await ActiveSession.findOne({ studentId });
   if (existing) return res.status(400).json({ error: 'Already inside' });
@@ -45,8 +37,7 @@ router.post('/entry', async (req, res) => {
 router.post('/exit', async (req, res) => {
   const { studentId, studentName } = req.body;
   const now = new Date();
-  const date = getLocalDateString(now);
-  const time = now.toLocaleTimeString();
+  const { date, time } = getDhakaDateTimeParts(now);
 
   const active = await ActiveSession.findOne({ studentId });
   if (!active) return res.status(400).json({ error: 'Not inside' });
@@ -70,12 +61,13 @@ router.delete('/active/:studentId', async (req, res) => {
   const session = await ActiveSession.findOneAndDelete({ studentId: req.params.studentId });
   if (!session) return res.status(404).json({ error: 'Not found' });
   const now = new Date();
+  const { date, time } = getDhakaDateTimeParts(now);
   const log = new Log({
     studentId: session.studentId,
     studentName: session.studentName,
     type: 'exit',
-    date: getLocalDateString(now),
-    time: now.toLocaleTimeString(),
+    date,
+    time,
     duration: Math.floor((now.getTime() - session.timestamp) / 60000),
     forced: true
   });
