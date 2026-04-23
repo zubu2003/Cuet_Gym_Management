@@ -22,6 +22,17 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'OK' });
 });
 
+app.use('/api', async (req, res, next) => {
+  try {
+    await connectDB();
+    return next();
+  } catch (error) {
+    return res.status(500).json({
+      error: 'Database connection failed. Please try again.'
+    });
+  }
+});
+
 // Routes - MAKE SURE these are all correct
 app.use('/api/students', require('./routes/students'));
 app.use('/api/equipment', require('./routes/equipment'));
