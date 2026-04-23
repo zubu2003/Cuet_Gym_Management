@@ -138,6 +138,32 @@ body::after {
     background: #f8fafc;
 }
 
+.password-input-wrap {
+    position: relative;
+}
+
+.password-input-wrap input {
+    padding-right: 2.8rem;
+}
+
+.toggle-password-btn {
+    position: absolute;
+    top: 50%;
+    right: 0.65rem;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: #64748b;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem;
+}
+
+.toggle-password-btn .material-icons {
+    font-size: 1.2rem;
+}
+
 .form-group input:focus {
     outline: none;
     border-color: #2a5298;

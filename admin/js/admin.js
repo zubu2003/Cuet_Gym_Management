@@ -84,6 +84,51 @@ async function initSampleData() {
 
 // Event listener for logout button (if exists)
 document.addEventListener('DOMContentLoaded', function() {
+  const adminNavbar = document.querySelector('.admin-navbar');
+  const sidebar = document.querySelector('.admin-sidebar');
+
+  if (adminNavbar && sidebar) {
+    let toggleBtn = document.getElementById('adminSidebarToggle');
+    if (!toggleBtn) {
+      toggleBtn = document.createElement('button');
+      toggleBtn.id = 'adminSidebarToggle';
+      toggleBtn.className = 'admin-menu-toggle';
+      toggleBtn.setAttribute('aria-label', 'Toggle sidebar');
+      toggleBtn.innerHTML = '<span class="material-icons">menu</span>';
+      adminNavbar.insertBefore(toggleBtn, adminNavbar.firstChild);
+    }
+
+    let overlay = document.querySelector('.admin-sidebar-overlay');
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.className = 'admin-sidebar-overlay';
+      document.body.appendChild(overlay);
+    }
+
+    const closeSidebar = () => {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('show');
+      document.body.classList.remove('admin-sidebar-open');
+    };
+
+    toggleBtn.addEventListener('click', () => {
+      const isOpen = sidebar.classList.toggle('open');
+      overlay.classList.toggle('show', isOpen);
+      document.body.classList.toggle('admin-sidebar-open', isOpen);
+    });
+
+    overlay.addEventListener('click', closeSidebar);
+    sidebar.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', closeSidebar);
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        closeSidebar();
+      }
+    });
+  }
+
   const logoutBtn = document.getElementById('logoutBtn');
   if (logoutBtn) {
     logoutBtn.addEventListener('click', logout);

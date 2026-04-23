@@ -222,6 +222,7 @@ body {
 .dashboard-wrapper {
     display: flex;
     min-height: calc(100vh - 60px);
+    position: relative;
 }
 
 /* Sidebar */
@@ -301,7 +302,7 @@ body {
 .gym-status {
     border-top: 1px solid #e0e0e0;
     padding: 1.5rem 1rem 0 1rem;
-    margin-top: 1rem;
+    margin-top: auto;
 }
 
 .gym-status h4 {
@@ -631,15 +632,51 @@ body {
         position: fixed;
         left: -260px;
         top: 60px;
-        z-index: 99;
+        z-index: 110;
         transition: left 0.3s ease;
         height: calc(100vh - 60px);
+        justify-content: flex-start;
+        padding-bottom: 1rem;
     }
     
     .sidebar.open {
         left: 0;
     }
     
+    .sidebar-overlay {
+        position: fixed;
+        inset: 60px 0 0 0;
+        background: rgba(15, 23, 42, 0.45);
+        z-index: 105;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.2s ease;
+    }
+
+    .sidebar-overlay.show {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    body.sidebar-open {
+        overflow: hidden;
+    }
+
+    .sidebar-section {
+        flex: 0;
+    }
+
+    .gym-status {
+        margin-top: 0.75rem;
+        padding: 1rem;
+        border-top: 1px solid #e2e8f0;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .gym-status-box {
+        padding: 1rem 0.8rem;
+    }
+
     .dashboard-main {
         padding: 1rem;
     }

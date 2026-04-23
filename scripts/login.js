@@ -1,6 +1,23 @@
 // Login page JS
 const API_BASE = window.location.hostname === 'localhost' ? 'http://localhost:5001/api' : '/api';
 
+function initPasswordToggles() {
+    document.querySelectorAll('[data-toggle-password]').forEach((toggleBtn) => {
+        toggleBtn.addEventListener('click', () => {
+            const targetId = toggleBtn.getAttribute('data-toggle-password');
+            const input = document.getElementById(targetId);
+            if (!input) return;
+
+            const isPassword = input.type === 'password';
+            input.type = isPassword ? 'text' : 'password';
+            const icon = toggleBtn.querySelector('.material-icons');
+            if (icon) {
+                icon.textContent = isPassword ? 'visibility_off' : 'visibility';
+            }
+        });
+    });
+}
+
 document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
     e.preventDefault();
     
@@ -39,3 +56,5 @@ document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
         alert('Login failed: ' + err.message);
     }
 });
+
+document.addEventListener('DOMContentLoaded', initPasswordToggles);
