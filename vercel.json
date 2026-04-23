@@ -1,67 +1,45 @@
 {
   "version": 2,
-  "builds": [
+  "rewrites": [
     {
-      "src": "backend/server.js",
-      "use": "@vercel/node"
+      "source": "/api/:path*",
+      "destination": "/api/:path*"
     },
     {
-      "src": "pages/**/*.html",
-      "use": "@vercel/static"
+      "source": "/",
+      "destination": "/pages/index.html"
     },
     {
-      "src": "admin/**/*.html",
-      "use": "@vercel/static"
+      "source": "/login",
+      "destination": "/pages/login.html"
     },
     {
-      "src": "styles/**/*.css",
-      "use": "@vercel/static"
+      "source": "/signup",
+      "destination": "/pages/signup.html"
     },
     {
-      "src": "scripts/**/*.js",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/backend/server.js"
+      "source": "/dashboard",
+      "destination": "/pages/dashboard.html"
     },
     {
-      "src": "/",
-      "dest": "/pages/index.html"
+      "source": "/admin",
+      "destination": "/admin/index.html"
     },
     {
-      "src": "/login",
-      "dest": "/pages/login.html"
+      "source": "/admin/:path*",
+      "destination": "/admin/:path*"
     },
     {
-      "src": "/signup",
-      "dest": "/pages/signup.html"
+      "source": "/styles/:path*",
+      "destination": "/styles/:path*"
     },
     {
-      "src": "/dashboard",
-      "dest": "/pages/dashboard.html"
+      "source": "/scripts/:path*",
+      "destination": "/scripts/:path*"
     },
     {
-      "src": "/admin",
-      "dest": "/admin/index.html"
-    },
-    {
-      "src": "/admin/(.*)",
-      "dest": "/admin/$1"
-    },
-    {
-      "src": "/styles/(.*)",
-      "dest": "/styles/$1"
-    },
-    {
-      "src": "/scripts/(.*)",
-      "dest": "/scripts/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/pages/$1"
+      "source": "/(.*)",
+      "destination": "/pages/$1"
     }
   ]
 }
