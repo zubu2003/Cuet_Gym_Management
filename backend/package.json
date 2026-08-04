@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "create-admin": "node create-admin.js",
+    "reset-admin-password": "node reset-admin-password.js"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",
